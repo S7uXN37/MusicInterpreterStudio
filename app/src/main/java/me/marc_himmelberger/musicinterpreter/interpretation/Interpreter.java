@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import android.util.Log;
 
 public class Interpreter {
-	// FAILSAFE
-	public static final int MAX_NOTES = 100;
+	// FAIL-SAFE
+	private static final int MAX_NOTES = 100;
 	
 	// RESULTS
-	public ArrayList<Short> data = new ArrayList<Short>();
-	public ArrayList<Note> notes = new ArrayList<Note>();
+	public ArrayList<Short> data = new ArrayList<>();
+	public ArrayList<Note> notes = new ArrayList<>();
 	
 	// PARAMETERS
 	private int noteSensitivity = 2048; // should be in the thousands (maxima can get bigger locally because of instrument)
@@ -26,11 +26,9 @@ public class Interpreter {
 		int skipEvery = Integer.MAX_VALUE;
 
 		int frames = 0;
-		for (byte s : input) {
-			short num = s;
-			
+		for (byte b : input) {
 			if (frames % skipEvery != 0)
-				data.add(num);
+				data.add((short) b);
 			
 			frames++;
 		}
@@ -115,7 +113,7 @@ public class Interpreter {
 	
 	
 	private <T> ArrayList<T> resolveList(ArrayList<Integer> indices, ArrayList<T> data) {
-		ArrayList<T> resolved = new ArrayList<T>();
+		ArrayList<T> resolved = new ArrayList<>();
 		
 		for (int i = 0; i < indices.size(); i++) {
 			resolved.add(data.get(indices.get(i)));
@@ -125,7 +123,7 @@ public class Interpreter {
 	}
 	
 	private <T extends Comparable<T>> ArrayList<Integer> findMaxima(ArrayList<T> dataList, int epsilon) {
-		ArrayList<Integer> maxmaIndices = new ArrayList<Integer>();
+		ArrayList<Integer> maxmaIndices = new ArrayList<>();
 		
 		for (int i = epsilon; i < dataList.size()-epsilon; i++) {
 			T t_i = dataList.get(i);

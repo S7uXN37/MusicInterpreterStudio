@@ -1,6 +1,38 @@
 [
     {
-        "merged": "D:\\workspace\\MusicInterpreterStudio\\app\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_color_highlight_material.xml",
-        "source": "D:\\workspace\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\color-v23\\abc_color_highlight_material.xml"
+        "merged": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_switch_track.xml",
+        "source": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\color-v23\\abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_seek_thumb.xml",
+        "source": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\color-v23\\abc_tint_seek_thumb.xml"
+    },
+    {
+        "merged": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_edittext.xml",
+        "source": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\color-v23\\abc_tint_edittext.xml"
+    },
+    {
+        "merged": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_default.xml",
+        "source": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\color-v23\\abc_tint_default.xml"
+    },
+    {
+        "merged": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_spinner.xml",
+        "source": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\color-v23\\abc_tint_spinner.xml"
+    },
+    {
+        "merged": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_switch_thumb.xml",
+        "source": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\color-v23\\abc_tint_switch_thumb.xml"
+    },
+    {
+        "merged": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_btn_checkable.xml",
+        "source": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\color-v23\\abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_btn_colored_borderless_text_material.xml",
+        "source": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\color-v23\\abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_color_highlight_material.xml",
+        "source": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\color-v23\\abc_color_highlight_material.xml"
     }
 ]

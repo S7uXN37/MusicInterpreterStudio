@@ -1,7 +1,7 @@
 package me.marc_himmelberger.musicinterpreter.interpretation;
 
-public class Note {
-	public final static String[] NAMES = new String[]{"A", "A#/Bb", "B", "C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab"};
+class Note {
+	private final static String[] NAMES = new String[]{"A", "A#/Bb", "B", "C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab"};
 	
 	public int frame;
 	public int duration;
@@ -27,9 +27,8 @@ public class Note {
 		// calculate number of half steps up or down from A4: n
 		// hz = freqA4 * root_12(2) ^ n
 		float n = (float) (Math.log(freq / freqA4) / Math.log(Math.pow(2, 1d/12d)));
-		int stepsRounded = round(n);
 		
-		return stepsRounded;
+		return round(n);
 	}
 
 	private String lookupNote() {
@@ -47,9 +46,8 @@ public class Note {
 	
 	private int round(float f) {
 		int tmp = (int) f;
-		int rounded = Math.abs(f - tmp) < 0.5d ? tmp : tmp + (int)Math.signum(f);
 		
-		return rounded;
+		return Math.abs(f - tmp) < 0.5d ? tmp : tmp + (int)Math.signum(f);
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "D:\\workspace\\MusicInterpreterStudio\\app\\build\\intermediates\\res\\merged\\debug\\values-v14\\values-v14.xml",
+        "outputFile": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\res\\merged\\debug\\values-v14\\values-v14.xml",
         "map": [
             {
                 "to": {
@@ -12,14 +12,14 @@
                     "endOffset": 198
                 },
                 "from": {
-                    "file": "D:\\workspace\\MusicInterpreterStudio\\app\\src\\main\\res\\values-v14\\styles.xml",
+                    "file": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\src\\main\\res\\values-v14\\styles.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
-                        "startOffset": 225,
+                        "startOffset": 227,
                         "endLine": 9,
                         "endColumn": 12,
-                        "endOffset": 370
+                        "endOffset": 372
                     }
                 }
             },
@@ -33,7 +33,7 @@
                     "endOffset": 474
                 },
                 "from": {
-                    "file": "D:\\workspace\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-v14\\values-v14.xml",
+                    "file": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-v14\\values-v14.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -53,7 +53,7 @@
                     "endOffset": 545
                 },
                 "from": {
-                    "file": "D:\\workspace\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-v14\\values-v14.xml",
+                    "file": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-v14\\values-v14.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -72,7 +72,7 @@
                     "endOffset": 628
                 },
                 "from": {
-                    "file": "D:\\workspace\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-v14\\values-v14.xml",
+                    "file": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-v14\\values-v14.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -92,7 +92,7 @@
                     "endOffset": 1038
                 },
                 "from": {
-                    "file": "D:\\workspace\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-v14\\values-v14.xml",
+                    "file": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-v14\\values-v14.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
@@ -113,7 +113,7 @@
                     "endOffset": 1460
                 },
                 "from": {
-                    "file": "D:\\workspace\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-v14\\values-v14.xml",
+                    "file": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-v14\\values-v14.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
@@ -133,7 +133,7 @@
                     "endOffset": 1580
                 },
                 "from": {
-                    "file": "D:\\workspace\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-v14\\values-v14.xml",
+                    "file": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-v14\\values-v14.xml",
                     "position": {
                         "startLine": 21,
                         "startColumn": 4,
@@ -152,7 +152,7 @@
                     "endOffset": 1643
                 },
                 "from": {
-                    "file": "D:\\workspace\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-v14\\values-v14.xml",
+                    "file": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-v14\\values-v14.xml",
                     "position": {
                         "startLine": 22,
                         "startColumn": 4,
@@ -172,7 +172,7 @@
                     "endOffset": 1797
                 },
                 "from": {
-                    "file": "D:\\workspace\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-v14\\values-v14.xml",
+                    "file": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-v14\\values-v14.xml",
                     "position": {
                         "startLine": 23,
                         "startColumn": 4,
@@ -192,7 +192,7 @@
                     "endOffset": 1860
                 },
                 "from": {
-                    "file": "D:\\workspace\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-v14\\values-v14.xml",
+                    "file": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-v14\\values-v14.xml",
                     "position": {
                         "startLine": 26,
                         "startColumn": 4,
@@ -211,7 +211,7 @@
                     "endOffset": 1992
                 },
                 "from": {
-                    "file": "D:\\workspace\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\values-v14\\values-v14.xml",
+                    "file": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-v14\\values-v14.xml",
                     "position": {
                         "startLine": 27,
                         "startColumn": 4,

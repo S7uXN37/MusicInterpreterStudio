@@ -12,7 +12,7 @@ import javazoom.jl.decoder.DecoderException;
 import javazoom.jl.decoder.Header;
 import javazoom.jl.decoder.SampleBuffer;
 
-public class Mp3Decoder {
+class Mp3Decoder {
 	public static byte[] decode(InputStream in, int max_ms) 
 			throws IOException, Mp3DecoderException {
 		
@@ -60,8 +60,7 @@ public class Mp3Decoder {
 			Log.w("Mp3Decoder", "Decoder error", e);
 			throw new Mp3DecoderException(e);
 		} finally {
-			if (inputStream != null)
-				inputStream.close();
+			inputStream.close();
 		}
 	}
 }

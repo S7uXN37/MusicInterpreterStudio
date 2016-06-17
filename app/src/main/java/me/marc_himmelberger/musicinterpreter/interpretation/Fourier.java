@@ -1,6 +1,6 @@
 package me.marc_himmelberger.musicinterpreter.interpretation;
 
-public class Fourier {
+class Fourier {
 	// compute the FFT of x[], assuming its length is a power of 2
     public static Complex[] fft(Complex[] x) {
         int N = x.length;
@@ -19,7 +19,7 @@ public class Fourier {
         Complex[] q = fft(even);
 
         // fft of odd terms
-        Complex[] odd  = even;  // reuse the array
+        Complex[] odd = new Complex[N/2];
         for (int k = 0; k < N/2; k++) {
             odd[k] = x[2*k + 1];
         }
@@ -38,7 +38,7 @@ public class Fourier {
 
 
     // compute the inverse FFT of x[], assuming its length is a power of 2
-    public static Complex[] ifft(Complex[] x) {
+    private static Complex[] ifft(Complex[] x) {
         int N = x.length;
         Complex[] y = new Complex[N];
 
@@ -65,7 +65,7 @@ public class Fourier {
     }
 
     // compute the circular convolution of x and y
-    public static Complex[] cconvolve(Complex[] x, Complex[] y) {
+    private static Complex[] cconvolve(Complex[] x, Complex[] y) {
 
         // should probably pad x and y with 0s so that they have same length
         // and are powers of 2
@@ -93,11 +93,11 @@ public class Fourier {
         Complex ZERO = new Complex(0, 0);
 
         Complex[] a = new Complex[2*x.length];
-        for (int i = 0;        i <   x.length; i++) a[i] = x[i];
+        System.arraycopy(x, 0, a, 0, x.length);
         for (int i = x.length; i < 2*x.length; i++) a[i] = ZERO;
 
         Complex[] b = new Complex[2*y.length];
-        for (int i = 0;        i <   y.length; i++) b[i] = y[i];
+        System.arraycopy(y, 0, b, 0, y.length);
         for (int i = y.length; i < 2*y.length; i++) b[i] = ZERO;
 
         return cconvolve(a, b);
@@ -107,8 +107,8 @@ public class Fourier {
     public static void show(Complex[] x, String title) {
         System.out.println(title);
         System.out.println("-------------------");
-        for (int i = 0; i < x.length; i++) {
-            System.out.println(x[i]);
+        for (Complex c : x) {
+            System.out.println(c);
         }
         System.out.println();
     }
