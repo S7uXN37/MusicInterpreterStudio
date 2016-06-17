@@ -17,9 +17,8 @@ class Mp3Decoder {
 			throws IOException, Mp3DecoderException {
 		
 		ByteArrayOutputStream outStream = new ByteArrayOutputStream(1024);
-		InputStream inputStream = new BufferedInputStream(in);
 		
-		try {
+		try (InputStream inputStream = new BufferedInputStream(in)) {
 			Bitstream bitstream = new Bitstream(inputStream);
 			Decoder decoder = new Decoder();
 			
@@ -59,8 +58,6 @@ class Mp3Decoder {
 		} catch (DecoderException e) {
 			Log.w("Mp3Decoder", "Decoder error", e);
 			throw new Mp3DecoderException(e);
-		} finally {
-			inputStream.close();
 		}
 	}
 }

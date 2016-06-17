@@ -8,8 +8,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import me.marc_himmelberger.musicinterpreter.R;
 
-public class PagerAdapter extends FragmentPagerAdapter {
-    private Resources resources;
+class PagerAdapter extends FragmentPagerAdapter {
+    private final Resources resources;
 
     public PagerAdapter (FragmentManager fragMan, Resources res) {
         super(fragMan);

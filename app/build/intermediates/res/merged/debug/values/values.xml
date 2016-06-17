@@ -289,8 +289,6 @@
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
-    <string name="action_open">Open file</string>
-    <string name="action_settings">Settings</string>
     <string name="analysis_title">3. Analysis</string>
     <string name="analyze_file_button">Analyze!</string>
     <string name="analyze_file_info">In this step, you have to specify the required parameters for analysis and make sure the results are fine.</string>

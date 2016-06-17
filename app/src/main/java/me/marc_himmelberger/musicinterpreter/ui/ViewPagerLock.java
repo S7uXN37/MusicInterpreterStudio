@@ -6,10 +6,10 @@ import android.support.v4.view.ViewPager;
 
 import me.marc_himmelberger.musicinterpreter.R;
 
-public class ViewPagerLock implements ViewPager.OnPageChangeListener {
+class ViewPagerLock implements ViewPager.OnPageChangeListener {
     public int screenUnlocked = 0;
 
-    private Activity mActivity;
+    private final Activity mActivity;
 
     public ViewPagerLock(Activity parent) {
         mActivity = parent;
@@ -19,7 +19,9 @@ public class ViewPagerLock implements ViewPager.OnPageChangeListener {
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
         if (position >= screenUnlocked && positionOffset > 0.25f) {
-            ((ViewPager) mActivity.findViewById(R.id.pager)).setCurrentItem(position);
+            ViewPager mViewPager = ((ViewPager) mActivity.findViewById(R.id.pager));
+            mViewPager.setCurrentItem(position);
+            mViewPager.setEnabled(false);
 
             Snackbar.make(
                     mActivity.findViewById(R.id.pager),
@@ -35,5 +37,7 @@ public class ViewPagerLock implements ViewPager.OnPageChangeListener {
 
     @Override
     public void onPageSelected(int position) {
+        if (position > screenUnlocked)
+            ((ViewPager) mActivity.findViewById(R.id.pager)).setCurrentItem(position-1);
     }
 }

@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:2:1-28:12
+ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:2:1-24:12
 	package
 		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:3:5-52
 		INJECTED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml
@@ -15,8 +15,55 @@ ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src
 		INJECTED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:7:5-79
+	android:name
+		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:7:22-77
+application
+ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:9:5-22:19
+MERGED from [com.android.support:appcompat-v7:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-v4:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-vector-drawable:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.0.0\AndroidManifest.xml:23:5-20
+MERGED from [com.android.support:support-v4:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:animated-vector-drawable:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.0.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-vector-drawable:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.0.0\AndroidManifest.xml:23:5-20
+MERGED from [com.android.support:support-v4:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:design:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\design\24.0.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-v4:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:appcompat-v7:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-v4:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-vector-drawable:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.0.0\AndroidManifest.xml:23:5-20
+MERGED from [com.android.support:support-v4:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:animated-vector-drawable:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.0.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-vector-drawable:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.0.0\AndroidManifest.xml:23:5-20
+MERGED from [com.android.support:support-v4:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+	android:label
+		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:12:9-41
+	android:allowBackup
+		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:10:9-36
+	android:icon
+		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:11:9-45
+	android:theme
+		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:13:9-65
+activity#me.marc_himmelberger.musicinterpreter.ui.MainActivity
+ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:14:9-21:20
+	android:label
+		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:16:13-45
+	android:name
+		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:15:13-44
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:17:13-20:29
+action#android.intent.action.MAIN
+ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:18:17-69
+	android:name
+		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:18:25-66
+category#android.intent.category.LAUNCHER
+ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:19:17-77
+	android:name
+		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:19:27-74
 uses-sdk
-ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:7:5-9:41
+INJECTED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.0.0\AndroidManifest.xml:21:5-23:78
 MERGED from [com.android.support:support-v4:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
 MERGED from [com.android.support:support-vector-drawable:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.0.0\AndroidManifest.xml:21:5-43
@@ -38,57 +85,8 @@ MERGED from [com.android.support:support-v4:24.0.0] D:\Users\Marc\workspace\Andr
 	tools:overrideLibrary
 		ADDED from [com.android.support:appcompat-v7:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.0.0\AndroidManifest.xml:23:9-75
 	android:targetSdkVersion
-		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:9:9-38
 		INJECTED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml
 		INJECTED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:8:9-35
 		INJECTED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml
 		INJECTED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml
-uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:10:5-79
-	android:name
-		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:10:22-77
-application
-ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:12:5-26:19
-MERGED from [com.android.support:appcompat-v7:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.0.0\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-v4:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-vector-drawable:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.0.0\AndroidManifest.xml:23:5-20
-MERGED from [com.android.support:support-v4:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:animated-vector-drawable:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.0.0\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-vector-drawable:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.0.0\AndroidManifest.xml:23:5-20
-MERGED from [com.android.support:support-v4:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:design:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\design\24.0.0\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-v4:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:appcompat-v7:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.0.0\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-v4:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-vector-drawable:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.0.0\AndroidManifest.xml:23:5-20
-MERGED from [com.android.support:support-v4:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:animated-vector-drawable:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.0.0\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-vector-drawable:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.0.0\AndroidManifest.xml:23:5-20
-MERGED from [com.android.support:support-v4:24.0.0] D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
-	android:label
-		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:15:9-41
-	android:allowBackup
-		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:13:9-35
-	android:icon
-		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:14:9-45
-	android:theme
-		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:16:9-65
-activity#me.marc_himmelberger.musicinterpreter.ui.MainActivity
-ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:17:9-25:20
-	android:label
-		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:19:13-45
-	android:name
-		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:18:13-44
-intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:20:13-24:29
-action#android.intent.action.MAIN
-ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:21:17-69
-	android:name
-		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:21:25-66
-category#android.intent.category.LAUNCHER
-ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:23:17-77
-	android:name
-		ADDED from D:\Users\Marc\workspace\Android Studio\MusicInterpreterStudio\app\src\main\AndroidManifest.xml:23:27-74

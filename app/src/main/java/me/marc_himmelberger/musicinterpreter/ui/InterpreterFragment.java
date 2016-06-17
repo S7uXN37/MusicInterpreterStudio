@@ -23,7 +23,7 @@ public class InterpreterFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         Intent request = new Intent(Intent.ACTION_GET_CONTENT);
-                        request.setType("*/*");
+                        request.setType("audio/*");
                         getActivity().startActivityForResult(request, MainActivity.GET_FILE_REQ_CODE);
                     }
                 });
