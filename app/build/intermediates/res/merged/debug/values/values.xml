@@ -231,6 +231,7 @@
     <dimen name="design_tab_text_size_2line">12sp</dimen>
     <item format="float" name="disabled_alpha_material_dark" type="dimen">0.30</item>
     <item format="float" name="disabled_alpha_material_light" type="dimen">0.26</item>
+    <dimen name="fragment_separation_vertical">32dp</dimen>
     <item format="float" name="highlight_alpha_material_colored" type="dimen">0.26</item>
     <item format="float" name="highlight_alpha_material_dark" type="dimen">0.20</item>
     <item format="float" name="highlight_alpha_material_light" type="dimen">0.12</item>
@@ -302,6 +303,7 @@
     <string name="open_file_button">Select file</string>
     <string name="open_file_title">1. Open file</string>
     <string name="read_file_button">Read file</string>
+    <string name="read_file_error">Error: Unable to read file!</string>
     <string name="read_file_info">Here you can read the file contents and set the required parameters.</string>
     <string name="read_file_title">2. Read file</string>
     <string name="results_info">These are the results:</string>

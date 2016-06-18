@@ -19,6 +19,7 @@ public class InterpreterFragment extends Fragment {
         switch (getArguments().getInt(ARG_ID_KEY)) {
             case 0:
                 rootView = inflater.inflate(R.layout.fragment_open_file, container, false);
+
                 rootView.findViewById(R.id.openFileButton).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -27,9 +28,20 @@ public class InterpreterFragment extends Fragment {
                         getActivity().startActivityForResult(request, MainActivity.GET_FILE_REQ_CODE);
                     }
                 });
+
                 break;
             case 1:
                 rootView = inflater.inflate(R.layout.fragment_read_file, container, false);
+
+                rootView.findViewById(R.id.readFileButton).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ((MainActivity) getActivity()).readFile(); // TODO pass parameters
+                    }
+                });
+
+                ((WaveformView) rootView.findViewById(R.id.waveform)).setParentActivity(getActivity());
+
                 break;
             case 2:
                 rootView = inflater.inflate(R.layout.fragment_analysis, container, false);

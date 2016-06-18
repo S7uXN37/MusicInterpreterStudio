@@ -12,6 +12,7 @@
     <string name="read_file_title">2. Read file</string>
     <string name="read_file_info">Here you can read the file contents and set the required parameters.</string>
     <string name="read_file_button">Read file</string>
+    <string name="read_file_error">Error: Unable to read file!</string>
 
     <string name="analysis_title">3. Analysis</string>
     <string name="analyze_file_info">In this step, you have to specify the required parameters for analysis and make sure the results are fine.</string>
