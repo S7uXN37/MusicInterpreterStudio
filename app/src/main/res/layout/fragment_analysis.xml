@@ -15,9 +15,52 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/analyze_file_info" />
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/analyze_file_button" />
+        android:text="@string/analysis_windowSize"
+        android:layout_marginTop="@dimen/fragment_separation_vertical" />
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/param_windowSize"
+        android:max="4"
+        android:progress="3" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/analysis_frequencyOffset" />
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/param_frequencyScalar"
+        android:max="6"
+        android:progress="2" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/fragment_separation_vertical" >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/analyze_file_button"
+            android:id="@+id/analyzeButton" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/progressWheelAnalyze" />
+
+    </RelativeLayout>
 
 </LinearLayout>

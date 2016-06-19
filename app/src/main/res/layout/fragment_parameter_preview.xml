@@ -12,57 +12,46 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sensitivity:" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/parameters_info" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/parameters_sensitivity"
+        android:paddingTop="@dimen/activity_vertical_margin" />
 
     <SeekBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/param_sensitivity"
         android:max="2000"
-        android:progress="1000" />
+        android:progress="1000" /> <!-- sensitivity = progress + 1000 -->
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Window size:" />
-
-    <SeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/param_windowSize"
-        android:max="4"
-        android:progress="3" />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Freq offset:" />
-
-    <SeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/param_frequencyScalar"
-        android:max="6"
-        android:progress="2" />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Amplitude threshold:" />
+        android:text="@string/parameters_threshold" />
 
     <SeekBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/param_threshold"
         android:max="900"
-        android:progress="400" />
+        android:progress="400" /> <!-- threshold = progress + 100 -->
+
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/param_idleBar"
+        android:layout_marginTop="@dimen/activity_vertical_margin" />
 
     <me.marc_himmelberger.musicinterpreter.ui.WaveformPreview
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/fragment_separation_vertical" />
+        android:id="@+id/waveform_preview" />
 
 </LinearLayout>

@@ -9,7 +9,11 @@ import java.util.ArrayList;
 class Waveform {
     private final Paint mPaint;
 
-    protected final MainActivity mMainActivity;
+    final MainActivity mMainActivity;
+
+    int framesPerPx;
+    float pxPerSampleVal;
+    float yOffset;
 
     public Waveform(MainActivity activity, Paint paint) {
         mMainActivity = activity;
@@ -21,7 +25,7 @@ class Waveform {
 
         ArrayList<Short> samples;
         if ((samples = mMainActivity.getSamples()) != null) {
-            int framesPerPx = samples.size() / canvas.getWidth();
+            framesPerPx = samples.size() / canvas.getWidth();
 
             int maxVal = Short.MIN_VALUE;
             for (int i = 0; i < samples.size(); i++) {
@@ -31,8 +35,8 @@ class Waveform {
                     maxVal = s;
             }
 
-            float pxPerSampleVal = canvas.getHeight() / (maxVal*2f);
-            float yOffset = maxVal * pxPerSampleVal;
+            pxPerSampleVal = canvas.getHeight() / (maxVal*2f);
+            yOffset = maxVal * pxPerSampleVal;
 
             for (int x = 0; x < canvas.getWidth(); x++) {
                 int avg = 0;

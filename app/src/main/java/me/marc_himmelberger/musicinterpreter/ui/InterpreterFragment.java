@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.SeekBar;
 
 import me.marc_himmelberger.musicinterpreter.R;
 
@@ -44,9 +46,47 @@ public class InterpreterFragment extends Fragment {
 
                 break;
             case 2:
-                rootView = inflater.inflate(R.layout.fragment_analysis, container, false);
+                rootView = inflater.inflate(R.layout.fragment_parameter_preview, container, false);
+
+                final WaveformPreview preview = ((WaveformPreview) rootView.findViewById(R.id.waveform_preview));
+                final SeekBar sensitivityBar = (SeekBar) rootView.findViewById(R.id.param_sensitivity);
+                final SeekBar thresholdBar = (SeekBar) rootView.findViewById(R.id.param_threshold);
+                final ProgressBar idleBar = (ProgressBar) rootView.findViewById(R.id.param_idleBar);
+
+                SeekBar.OnSeekBarChangeListener previewUpdater = new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) { }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) { }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                        if (!idleBar.isIndeterminate())
+                            preview.update();
+                    }
+                };
+
+                sensitivityBar.setOnSeekBarChangeListener(previewUpdater);
+                thresholdBar.setOnSeekBarChangeListener(previewUpdater);
+
+                preview.setParameterInputs(sensitivityBar, thresholdBar, idleBar);
+                preview.setInterpreter(((MainActivity) getActivity()).mInterpreter);
+                preview.setParentActivity(getActivity());
+
                 break;
             case 3:
+                rootView = inflater.inflate(R.layout.fragment_analysis, container, false);
+
+                rootView.findViewById(R.id.analyzeButton).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // TODO update results view
+                    }
+                });
+
+                break;
+            case 4:
                 rootView = inflater.inflate(R.layout.fragment_results, container, false);
                 break;
             default:

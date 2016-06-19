@@ -290,7 +290,9 @@
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
-    <string name="analysis_title">3. Analysis</string>
+    <string name="analysis_frequencyOffset">Frequency offset:</string>
+    <string name="analysis_title">4. Analysis</string>
+    <string name="analysis_windowSize">Window size:</string>
     <string name="analyze_file_button">Analyze!</string>
     <string name="analyze_file_info">In this step, you have to specify the required parameters for analysis and make sure the results are fine.</string>
     <string name="app_name">MusicInterpreter</string>
@@ -302,12 +304,16 @@
     <string name="file_selection_info">Here you can choose the file you want to analyze.</string>
     <string name="open_file_button">Select file</string>
     <string name="open_file_title">1. Open file</string>
+    <string name="parameters_info">Here you can adjust the parameters for identifying notes.</string>
+    <string name="parameters_sensitivity">Sensitivity:</string>
+    <string name="parameters_threshold">Amplitude threshold:</string>
+    <string name="parameters_title">3. Parameters</string>
     <string name="read_file_button">Read file</string>
     <string name="read_file_error">Error: Unable to read file!</string>
-    <string name="read_file_info">Here you can read the file contents and set the required parameters.</string>
+    <string name="read_file_info">Here you can read the file contents.</string>
     <string name="read_file_title">2. Read file</string>
     <string name="results_info">These are the results:</string>
-    <string name="results_title">4. Results</string>
+    <string name="results_title">5. Results</string>
     <string name="scroll_block_msg">Complete this screen before moving on!</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>

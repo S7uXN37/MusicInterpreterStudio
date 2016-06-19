@@ -39,5 +39,8 @@ class ViewPagerLock implements ViewPager.OnPageChangeListener {
     public void onPageSelected(int position) {
         if (position > screenUnlocked)
             ((ViewPager) mActivity.findViewById(R.id.pager)).setCurrentItem(position-1);
+
+        if (position == 2)
+            ((WaveformPreview) mActivity.findViewById(R.id.waveform_preview)).update();
     }
 }

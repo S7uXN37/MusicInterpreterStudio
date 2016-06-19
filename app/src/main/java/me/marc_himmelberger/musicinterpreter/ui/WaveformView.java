@@ -11,7 +11,7 @@ import android.view.View;
 
 class WaveformView extends View {
     private final Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    protected Waveform mWaveform;
+    Waveform mWaveform;
 
     public WaveformView(Context context) {
         super(context);

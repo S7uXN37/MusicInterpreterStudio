@@ -9,42 +9,33 @@ public class Interpreter {
 	private static final int MAX_NOTES = 100;
 	
 	// RESULTS
-	private ArrayList<Short> data = new ArrayList<>();
 	public ArrayList<Note> notes = new ArrayList<>();
 	
 	// PACKAGE LOCAL PARAMETERS
-	int noteSensitivity = 2048; // should be in the thousands (maxima can get bigger locally because of instrument)
-	int freqWindowSizeLog2 = 11; // determines length per note for FFT, using log2(length)
-	float freqScalar = 0.5f; // scale frequencies
-	private final float freqA4 = 440f; // frequency of A4
-	int noteThreshold = 500; // at least 10 to remove noise, 500 also removes echoes
-	private final int minNoteDistance = 100; // to avoid duplicate notes
+//	int noteSensitivity = 2048; // should be in the thousands (maxima can get bigger locally because of instrument)
+//	int freqWindowSizeLog2 = 11; // determines length per note for FFT, using log2(length)
+//	float freqScalar = 0.5f; // scale frequencies
+//	private final float freqA4 = 440f; // frequency of A4
+//	int noteThreshold = 500; // at least 10 to remove noise, 500 also removes echoes
+	private static final int minNoteDistance = 100; // to avoid duplicate notes
 
 	// PRIVATE PARAMETERS
-	private float framesPerSecond = -1;
-	
-	public void read(byte[] input, float frames_per_second) {
-		// copy to ArrayList
-		int skipEvery = Integer.MAX_VALUE;
+	private ArrayList<Short> mData;
+	private float framesPerSecond = -1; // TODO set
 
-		int frames = 0;
-		for (byte b : input) {
-			if (frames % skipEvery != 0)
-				data.add((short) b);
-			
-			frames++;
-		}
-		framesPerSecond = frames_per_second * (1f - 1f / skipEvery);
-		
-		Log.i("MusicInterpreter", "Input received, length=" + data.size());
+	public void setData(ArrayList<Short> data) {
+		mData = data;
 	}
-	
-	public void analyze() {
+
+	public void analyzeNotes(int noteSensitivity, int noteThreshold) {
+        if (mData == null)
+            return;
+
 		// find local maxima -> peak in waveform
-		ArrayList<Integer> localMaxInd = findMaxima(data, 1);
+		ArrayList<Integer> localMaxInd = findMaxima(mData, 1);
 		
 		// find local maxima in local maxima (a maxima bigger than all other maxima in some distance) -> start of notes
-		ArrayList<Short> localMaxima = resolveList(localMaxInd, data); // values of local maxima
+		ArrayList<Short> localMaxima = resolveList(localMaxInd, mData); // values of local maxima
 		ArrayList<Integer> tmpNoteIndRel = findMaxima(localMaxima, noteSensitivity); // super-local maxima, index relative to localMaxInd
 		ArrayList<Integer> tmpNoteIndAbs = resolveList(tmpNoteIndRel, localMaxInd); // super-local maxima, index absolute
 		
@@ -52,7 +43,7 @@ public class Interpreter {
 		notes.clear();
 		for (int i=0; i < tmpNoteIndAbs.size(); i++) {
 			int ind = tmpNoteIndAbs.get(i);
-			short amp = data.get(ind);
+			short amp = mData.get(ind);
 			
 			int lastNote = notes.size() > 0 ? notes.get(notes.size()-1).frame : -minNoteDistance;
 			
@@ -66,23 +57,25 @@ public class Interpreter {
 			}
 		}
 		if (notes.size() > 0)
-			notes.get(notes.size()-1).duration = data.size() - notes.get(notes.size()-1).frame;
-		
+			notes.get(notes.size()-1).duration = mData.size() - notes.get(notes.size()-1).frame;
+	}
+
+	public void analyzeFrequencies(int freqWindowSizeLog2, float freqScalar, float freqA4) {
 		// determine frequency using FFT
 		for (Note n : notes) {
 			int windowSize = (int) Math.pow(2, freqWindowSizeLog2);
 			Complex[] input = new Complex[windowSize];
 			for (int i = 0; i < windowSize; i++) {
-				input[i] = new Complex((double) data.get(n.frame + i), 0d);
+				input[i] = new Complex((double) mData.get(n.frame + i), 0d);
 			}
-			
+
 			// FFT
 			Complex[] output = Fourier.fft(input);
 			double[] outMag = new double[output.length];
 			for (int i = 0; i < output.length; i++) {
 				outMag[i] = output[i].abs();
 			}
-			
+
 			// find maximum in first half (symmetry: outMag[i] = outMag[N-i])
 			int maxInd = -1;
 			double maxVal = -1;
@@ -92,27 +85,21 @@ public class Interpreter {
 					maxInd = i;
 				}
 			}
-			
+
 			// sinusoid frequency
 			float hz = framesPerSecond * maxInd / windowSize * freqScalar;
 			Log.i("MusicInterpreter",
-								"Frequency identified: "
-								+ hz + "Hz\n"
-								+ "with " + outMag[maxInd] + "\n"
-								+ "Frequencies with factor 2:\n"
-								+ (hz*2) + "Hz with " + outMag[maxInd*2] + "\n"
-								+ (hz/2) + "Hz with " + outMag[maxInd/2]
-								);
-			
+					"Frequency identified: "
+							+ hz + "Hz\n"
+							+ "with " + outMag[maxInd] + "\n"
+							+ "Frequencies with factor 2:\n"
+							+ (hz*2) + "Hz with " + outMag[maxInd*2] + "\n"
+							+ (hz/2) + "Hz with " + outMag[maxInd/2]
+			);
+
 			n.setFreq(hz, freqA4);
 		}
-		
-		for (Note n : notes) {
-			Log.i("MusicInterpreter", "Note found! " + n.toString());
-		}
 	}
-
-	
 	
 	private <T> ArrayList<T> resolveList(ArrayList<Integer> indices, ArrayList<T> data) {
 		ArrayList<T> resolved = new ArrayList<>();

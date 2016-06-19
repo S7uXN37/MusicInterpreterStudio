@@ -27,7 +27,7 @@ import me.marc_himmelberger.musicinterpreter.io.Mp3Decoder;
 public class MainActivity extends FragmentActivity {
 	public static final int GET_FILE_REQ_CODE = 0;
 	
-	private Interpreter mInterpreter;
+	Interpreter mInterpreter;
     private ViewPagerLock mViewPagerLock;
 
     private Uri selectedUri;
@@ -124,7 +124,7 @@ public class MainActivity extends FragmentActivity {
                 public void OnDecodeComplete(ArrayList<Short> data) {
                     // successfully read file -> unlock next screen, update WaveformView, fill ProgressBar
                     samples = data;
-                    mViewPagerLock.screenUnlocked = 2;
+                    mViewPagerLock.screenUnlocked = 3;
 
                     findViewById(R.id.waveform).postInvalidate();
                     progressBar.setProgress(progressBar.getMax());
@@ -177,5 +177,9 @@ public class MainActivity extends FragmentActivity {
 
     ArrayList<Short> getSamples() {
         return samples;
+    }
+
+    void analyze() {
+        // TODO
     }
 }
