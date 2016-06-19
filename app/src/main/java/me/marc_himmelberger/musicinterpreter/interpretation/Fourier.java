@@ -1,12 +1,12 @@
 package me.marc_himmelberger.musicinterpreter.interpretation;
 
 class Fourier {
-	// compute the FFT of x[], assuming its length is a power of 2
-    public static Complex[] fft(Complex[] x) {
-        int N = x.length;
+	// compute the FFT of data[], assuming its length is a power of 2
+    public static Complex[] fft(Complex[] data) {
+        int N = data.length;
 
         // base case
-        if (N == 1) return new Complex[] { x[0] };
+        if (N == 1) return new Complex[] { data[0] };
 
         // radix 2 Cooley-Tukey FFT
         if (N % 2 != 0) { throw new RuntimeException("N is not a power of 2"); }
@@ -14,14 +14,14 @@ class Fourier {
         // fft of even terms
         Complex[] even = new Complex[N/2];
         for (int k = 0; k < N/2; k++) {
-            even[k] = x[2*k];
+            even[k] = data[2*k];
         }
         Complex[] q = fft(even);
 
         // fft of odd terms
         Complex[] odd = new Complex[N/2];
         for (int k = 0; k < N/2; k++) {
-            odd[k] = x[2*k + 1];
+            odd[k] = data[2*k + 1];
         }
         Complex[] r = fft(odd);
 

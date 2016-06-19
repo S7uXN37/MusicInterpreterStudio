@@ -1,10 +1,12 @@
 package me.marc_himmelberger.musicinterpreter.ui;
 
-import java.io.IOException;
+import android.os.AsyncTask;
+import android.support.annotation.Nullable;
+import android.util.Log;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import android.util.Log;
 import javazoom.jl.decoder.Bitstream;
 import javazoom.jl.decoder.BitstreamException;
 import javazoom.jl.decoder.Decoder;
@@ -13,33 +15,37 @@ import javazoom.jl.decoder.Header;
 import javazoom.jl.decoder.SampleBuffer;
 
 class Mp3Decoder {
-    private DecoderListener mListener;
+    private final DecoderListener mListener;
 
     private Mp3Decoder (DecoderListener listener) {
         mListener = listener;
     }
 
-    public static synchronized void startDecode(final InputStream in, final int max_ms, final DecoderListener listener) {
+    public static synchronized void startDecode(final InputStream in, final DecoderListener listener) {
         final Mp3Decoder decoder = new Mp3Decoder(listener);
-        Thread decoderThread = new Thread(new Runnable() {
+
+        AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
+            @Nullable
             @Override
-            public void run() {
+            protected Void doInBackground(Void[] objects) {
                 try {
-                    decoder.decode(in, max_ms);
+                    decoder.decode(in);
                 } catch (Exception e) {
                     listener.OnDecodeError(e);
                 }
 
                 listener.OnDecodeTerminated();
+                return null;
             }
-        }, "Mp3Decoder");
+        };
 
-        decoderThread.start();
+        asyncTask.execute();
+
         Log.v("Mp3Decoder", "Decoding started...");
     }
 
-	private synchronized void decode(InputStream in, int max_ms)
-			throws BitstreamException, DecoderException, IOException {
+	private synchronized void decode(InputStream in)
+			throws BitstreamException, DecoderException {
 		
 		ArrayList<Short> output = new ArrayList<>(1024);
 
@@ -58,20 +64,25 @@ class Mp3Decoder {
                 nextNotify += 500f;
             }
 
-			if (frameHeader == null || total_ms > max_ms) {
+			if (frameHeader == null) {
 				done = true;
 			} else {
 				total_ms += frameHeader.ms_per_frame();
 
-				SampleBuffer buffer = (SampleBuffer) decoder.decodeFrame(frameHeader, bitstream);
+				SampleBuffer buffer = (SampleBuffer) decoder.decodeFrame(frameHeader, bitstream); // CPU intense
 
 				if (buffer.getSampleFrequency() != 44100 || buffer.getChannelCount() != 2) {
 					throw new DecoderException("mono or non-44100 MP3 not supported", null);
 				}
 
 				short[] pcm = buffer.getBuffer();
-				for (short s : pcm) {
-					output.add(s);
+				for (int i = 0; i < pcm.length-1; i += 2) {
+                    short l = pcm[i];
+                    short r = pcm[i+1];
+
+                    short mono = (short) ((l + r) / 2f);
+
+					output.add(mono); // RAM intense
 				}
 			}
 
@@ -79,11 +90,6 @@ class Mp3Decoder {
 		}
 		bitstream.close();
 
-        short[] outputArray = new short[output.size()];
-        for (int i = 0; i < outputArray.length; i++) {
-            outputArray[i] = output.get(i);
-        }
-
-		mListener.OnDecodeComplete(outputArray);
+		mListener.OnDecodeComplete(output);
 	}
 }

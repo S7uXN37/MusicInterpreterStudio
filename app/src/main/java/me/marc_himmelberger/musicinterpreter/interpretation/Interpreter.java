@@ -1,24 +1,26 @@
 package me.marc_himmelberger.musicinterpreter.interpretation;
 
-import java.util.ArrayList;
-
 import android.util.Log;
+
+import java.util.ArrayList;
 
 public class Interpreter {
 	// FAIL-SAFE
 	private static final int MAX_NOTES = 100;
 	
 	// RESULTS
-	public ArrayList<Short> data = new ArrayList<>();
+	private ArrayList<Short> data = new ArrayList<>();
 	public ArrayList<Note> notes = new ArrayList<>();
 	
-	// PARAMETERS
-	private int noteSensitivity = 2048; // should be in the thousands (maxima can get bigger locally because of instrument)
-	private int freqWindowSizeLog2 = 11; // determines length per note for FFT, using log2(length)
-	private float freqScalar = 0.5f; // scale frequencies
-	private float freqA4 = 440f; // frequency of A4
-	private int noteThreshold = 130; // at least 10 to remove noise, 500 also removes echoes
-	private int minNoteDistance = 100; // to avoid duplicate notes
+	// PACKAGE LOCAL PARAMETERS
+	int noteSensitivity = 2048; // should be in the thousands (maxima can get bigger locally because of instrument)
+	int freqWindowSizeLog2 = 11; // determines length per note for FFT, using log2(length)
+	float freqScalar = 0.5f; // scale frequencies
+	float freqA4 = 440f; // frequency of A4
+	int noteThreshold = 130; // at least 10 to remove noise, 500 also removes echoes
+	int minNoteDistance = 100; // to avoid duplicate notes
+
+	// PRIVATE PARAMETERS
 	private float framesPerSecond = -1;
 	
 	public void read(byte[] input, float frames_per_second) {
@@ -123,7 +125,7 @@ public class Interpreter {
 	}
 	
 	private <T extends Comparable<T>> ArrayList<Integer> findMaxima(ArrayList<T> dataList, int epsilon) {
-		ArrayList<Integer> maxmaIndices = new ArrayList<>();
+		ArrayList<Integer> maximaIndices = new ArrayList<>();
 		
 		for (int i = epsilon; i < dataList.size()-epsilon; i++) {
 			T t_i = dataList.get(i);
@@ -145,10 +147,10 @@ public class Interpreter {
 			}
 			
 			if (biggestBefore && biggestAfter) {
-				maxmaIndices.add(i);
+				maximaIndices.add(i);
 			}
 		}
 		
-		return maxmaIndices;
+		return maximaIndices;
 	}
 }

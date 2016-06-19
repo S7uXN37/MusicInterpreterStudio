@@ -1,23 +1,24 @@
 package me.marc_himmelberger.musicinterpreter.ui;
 
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
-import javazoom.jl.decoder.BitstreamException;
-import javazoom.jl.decoder.DecoderException;
 import me.marc_himmelberger.musicinterpreter.R;
 import me.marc_himmelberger.musicinterpreter.interpretation.Interpreter;
 
@@ -25,26 +26,27 @@ public class MainActivity extends FragmentActivity {
 	public static final int GET_FILE_REQ_CODE = 0;
 	
 	private Interpreter mInterpreter;
-	private ViewPager mViewPager;
-    private PagerAdapter mPagerAdapter;
     private ViewPagerLock mViewPagerLock;
 
     private Uri selectedUri;
-    private short[] samples;
+    private ArrayList<Short> samples = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+        // setup title bar
         Toolbar mToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         mToolbar.setTitle(R.string.app_name);
 
+        // instantiate Interpreter
 		mInterpreter = new Interpreter();
 
-        mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), getResources());
+        // setup PagerAdapter, ViewPager and ViewPagerLock
+        PagerAdapter mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), getResources());
 
-        mViewPager = (ViewPager) findViewById(R.id.pager);
+        ViewPager mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mPagerAdapter);
 
         mViewPagerLock = new ViewPagerLock(this);
@@ -70,27 +72,66 @@ public class MainActivity extends FragmentActivity {
         }
 	}
 
-    protected synchronized void readFile() {
+    synchronized void readFile() {
         final ProgressBar progressBar = ((ProgressBar) findViewById(R.id.read_file_progress));
+        findViewById(R.id.readFileButton).setEnabled(false);
 
-        int durationMs = (int) (10f * 1000);
-        progressBar.setMax(durationMs);
         progressBar.setIndeterminate(true);
 
         try {
+            // Setup max for progress bar in background, then remove indeterminate flag
+            AsyncTask<Void, Void, Void> setupProgressBar = new AsyncTask<Void, Void, Void>() {
+                @Override
+                @Nullable
+                protected Void doInBackground(Void[] objects) {
+                    MediaPlayer mediaPlayer = null;
+
+                    try {
+                        mediaPlayer = new MediaPlayer();
+                        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                        mediaPlayer.setDataSource(getApplicationContext(), selectedUri);
+                        mediaPlayer.prepare();
+
+                        final int total_ms = mediaPlayer.getDuration();
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressBar.setMax(total_ms);
+                                progressBar.setIndeterminate(false);
+                            }
+                        });
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } finally {
+                        if (mediaPlayer != null)
+                           mediaPlayer.release();
+                    }
+                    return null;
+                }
+            };
+
+            setupProgressBar.execute();
+
+            // Get input stream to file
             final InputStream inputStream = getContentResolver().openInputStream(selectedUri);
 
-            Mp3Decoder.startDecode(inputStream, durationMs, new DecoderListener() {
+            // create DecoderListener and start decoding task
+            Mp3Decoder.startDecode(inputStream, new DecoderListener() {
                 @Override
-                public void OnDecodeComplete(short[] data) {
+                public void OnDecodeComplete(ArrayList<Short> data) {
+                    // successfully read file -> unlock next screen, update WaveformView, fill ProgressBar
                     samples = data;
                     mViewPagerLock.screenUnlocked = 2;
-                    Log.v("Mp3Decoder", "Decoder completed");
+
+                    findViewById(R.id.waveform).postInvalidate();
+                    progressBar.setProgress(progressBar.getMax());
+
+                    Log.v("Mp3Decoder", "Decoder completed, samples==null = " + (samples == null));
                 }
 
                 @Override
                 public void OnDecodeUpdate(int done_ms) {
-                    progressBar.setIndeterminate(false);
                     progressBar.setProgress(done_ms);
                     Log.v("Mp3Decoder", "Progress: " + done_ms);
                 }
@@ -103,13 +144,21 @@ public class MainActivity extends FragmentActivity {
                 @Override
                 public void OnDecodeTerminated() {
                     try {
-                        inputStream.close();
+                        if (inputStream != null)
+                            inputStream.close();
                     } catch (IOException e) {
                         readError(e);
                     }
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            findViewById(R.id.readFileButton).setEnabled(true);
+                        }
+                    });
                 }
             });
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             readError(e);
         }
     }
@@ -124,7 +173,7 @@ public class MainActivity extends FragmentActivity {
         Log.e("Mp3Decoder", "Decoder crashed", e);
     }
 
-    protected short[] getSamples() {
+    ArrayList<Short> getSamples() {
         return samples;
     }
 }
