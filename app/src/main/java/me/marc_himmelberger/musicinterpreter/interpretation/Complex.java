@@ -1,6 +1,6 @@
 package me.marc_himmelberger.musicinterpreter.interpretation;
 
-public class Complex {
+class Complex {
 	private final double re;   // the real part
     private final double im;   // the imaginary part
 

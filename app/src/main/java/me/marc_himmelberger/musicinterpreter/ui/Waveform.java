@@ -6,10 +6,10 @@ import android.graphics.Paint;
 
 import java.util.ArrayList;
 
-public class Waveform {
+class Waveform {
     private final Paint mPaint;
 
-    private final MainActivity mMainActivity;
+    protected final MainActivity mMainActivity;
 
     public Waveform(MainActivity activity, Paint paint) {
         mMainActivity = activity;

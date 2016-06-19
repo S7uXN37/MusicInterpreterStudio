@@ -16,9 +16,9 @@ public class Interpreter {
 	int noteSensitivity = 2048; // should be in the thousands (maxima can get bigger locally because of instrument)
 	int freqWindowSizeLog2 = 11; // determines length per note for FFT, using log2(length)
 	float freqScalar = 0.5f; // scale frequencies
-	float freqA4 = 440f; // frequency of A4
-	int noteThreshold = 130; // at least 10 to remove noise, 500 also removes echoes
-	int minNoteDistance = 100; // to avoid duplicate notes
+	private final float freqA4 = 440f; // frequency of A4
+	int noteThreshold = 500; // at least 10 to remove noise, 500 also removes echoes
+	private final int minNoteDistance = 100; // to avoid duplicate notes
 
 	// PRIVATE PARAMETERS
 	private float framesPerSecond = -1;

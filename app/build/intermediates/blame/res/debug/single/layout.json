@@ -44,6 +44,10 @@
         "source": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_navigation_menu_item.xml"
     },
     {
+        "merged": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_parameter_preview.xml",
+        "source": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\src\\main\\res\\layout\\fragment_parameter_preview.xml"
+    },
+    {
         "merged": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_cancel_action.xml",
         "source": "D:\\Users\\Marc\\workspace\\Android Studio\\MusicInterpreterStudio\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\notification_media_cancel_action.xml"
     },

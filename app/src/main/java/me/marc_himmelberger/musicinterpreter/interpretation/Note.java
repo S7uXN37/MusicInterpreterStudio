@@ -1,6 +1,6 @@
 package me.marc_himmelberger.musicinterpreter.interpretation;
 
-class Note {
+public class Note {
 	private final static String[] NAMES = new String[]{"A", "A#/Bb", "B", "C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab"};
 	
 	public int frame;

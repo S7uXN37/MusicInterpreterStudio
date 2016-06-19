@@ -21,6 +21,8 @@ import java.util.ArrayList;
 
 import me.marc_himmelberger.musicinterpreter.R;
 import me.marc_himmelberger.musicinterpreter.interpretation.Interpreter;
+import me.marc_himmelberger.musicinterpreter.io.DecoderListener;
+import me.marc_himmelberger.musicinterpreter.io.Mp3Decoder;
 
 public class MainActivity extends FragmentActivity {
 	public static final int GET_FILE_REQ_CODE = 0;

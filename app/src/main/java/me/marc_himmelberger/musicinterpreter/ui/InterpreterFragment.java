@@ -36,7 +36,7 @@ public class InterpreterFragment extends Fragment {
                 rootView.findViewById(R.id.readFileButton).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ((MainActivity) getActivity()).readFile(); // TODO pass parameters
+                        ((MainActivity) getActivity()).readFile();
                     }
                 });
 
