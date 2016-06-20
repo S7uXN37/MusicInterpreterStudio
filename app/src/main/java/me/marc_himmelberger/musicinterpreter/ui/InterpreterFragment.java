@@ -81,7 +81,7 @@ public class InterpreterFragment extends Fragment {
                 rootView.findViewById(R.id.analyzeButton).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        // TODO update results view
+                        ((MainActivity) getActivity()).analyze();
                     }
                 });
 

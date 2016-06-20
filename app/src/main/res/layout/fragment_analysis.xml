@@ -15,76 +15,65 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/analyze_file_info" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="@dimen/fragment_separation_vertical" >
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/analysis_windowSize"
-        android:layout_marginTop="@dimen/fragment_separation_vertical" />
-
-    <SeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/param_windowSize"
-        android:max="4"
-        android:progress="3" />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/analysis_frequencyOffset" />
-
-    <SeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/param_frequencyScalar"
-        android:max="6"
-        android:progress="2" />
-
-    />
-
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/analyze_file_button"
-            android:id="@+id/analyzeButton" />
-
-    />
-
-    <!--
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/fragment_separation_vertical" >
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentStart="true"
+            android:id="@+id/analyze_settings"
+            android:layout_toStartOf="@+id/analyzeButton" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/analysis_windowSize" />
+
+            <SeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/param_windowSize"
+                android:max="4"
+                android:progress="3" /> <!-- sizeLog2 = progress + 9 -->
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/analysis_frequencyOffset" />
+
+            <SeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/param_frequencyScalar"
+                android:max="6"
+                android:progress="2" /> <!-- scalar = 2^(progress - 3) -->
+
+        </LinearLayout>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/analyze_file_button"
-            android:id="@+id/analyzeButton" />
+            android:id="@+id/analyzeButton"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/analyze_idleBar" />
 
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/progressWheelAnalyze" />
+            android:id="@+id/analyze_idleBar"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingEnd="0dp"
+            android:visibility="invisible" />
 
     </RelativeLayout>
-
-    -->
 
 </LinearLayout>
