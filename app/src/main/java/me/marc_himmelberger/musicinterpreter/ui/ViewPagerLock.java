@@ -3,11 +3,12 @@ package me.marc_himmelberger.musicinterpreter.ui;
 import android.app.Activity;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
+import android.widget.ProgressBar;
 
 import me.marc_himmelberger.musicinterpreter.R;
 
 class ViewPagerLock implements ViewPager.OnPageChangeListener {
-    public int screenUnlocked = 0;
+    public static int screenUnlocked = 0;
 
     private final Activity mActivity;
 
@@ -40,7 +41,9 @@ class ViewPagerLock implements ViewPager.OnPageChangeListener {
         if (position > screenUnlocked)
             ((ViewPager) mActivity.findViewById(R.id.pager)).setCurrentItem(position-1);
 
-        if (position == 2)
-            ((WaveformPreview) mActivity.findViewById(R.id.waveform_preview)).update();
+        if (position == 2 && screenUnlocked == 2) {
+            if (!((ProgressBar) mActivity.findViewById(R.id.param_idleBar)).isIndeterminate())
+                ((WaveformPreview) mActivity.findViewById(R.id.waveform_preview)).update();
+        }
     }
 }

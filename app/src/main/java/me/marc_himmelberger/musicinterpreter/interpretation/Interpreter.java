@@ -1,6 +1,7 @@
 package me.marc_himmelberger.musicinterpreter.interpretation;
 
 import android.util.Log;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ public class Interpreter {
 	private static final int MAX_NOTES = 100;
 	
 	// RESULTS
-	public ArrayList<Note> notes = new ArrayList<>();
+	public final ArrayList<Note> mNotes = new ArrayList<>();
 	
 	// PACKAGE LOCAL PARAMETERS
 //	int noteSensitivity = 2048; // should be in the thousands (maxima can get bigger locally because of instrument)
@@ -18,10 +19,10 @@ public class Interpreter {
 //	private final float freqA4 = 440f; // frequency of A4
 //	int noteThreshold = 500; // at least 10 to remove noise, 500 also removes echoes
 	private static final int minNoteDistance = 100; // to avoid duplicate notes
+    private static final float framesPerSecond = 44100f;
 
 	// PRIVATE PARAMETERS
 	private ArrayList<Short> mData;
-	private float framesPerSecond = -1; // TODO set
 
 	public void setData(ArrayList<Short> data) {
 		mData = data;
@@ -40,30 +41,40 @@ public class Interpreter {
 		ArrayList<Integer> tmpNoteIndAbs = resolveList(tmpNoteIndRel, localMaxInd); // super-local maxima, index absolute
 		
 		// filter "notes" with low amplitude -> noise => noteThreshold
-		notes.clear();
+		mNotes.clear();
 		for (int i=0; i < tmpNoteIndAbs.size(); i++) {
 			int ind = tmpNoteIndAbs.get(i);
 			short amp = mData.get(ind);
 			
-			int lastNote = notes.size() > 0 ? notes.get(notes.size()-1).frame : -minNoteDistance;
+			int lastNote = mNotes.size() > 0 ? mNotes.get(mNotes.size()-1).frame : -minNoteDistance;
 			
-			if (notes.size() > MAX_NOTES) {
+			if (mNotes.size() > MAX_NOTES) {
 				Log.i("MusicInterpreter", "MAX_NOTES exceeded, aborting...");
 				return;
 			} else if (amp >= noteThreshold && ind - lastNote > minNoteDistance) {
-				if (notes.size() > 0)
-					notes.get(notes.size()-1).duration = ind - lastNote;
-				notes.add(new Note(ind));
+				if (mNotes.size() > 0)
+					mNotes.get(mNotes.size()-1).duration = ind - lastNote;
+				mNotes.add(new Note(ind));
 			}
 		}
-		if (notes.size() > 0)
-			notes.get(notes.size()-1).duration = mData.size() - notes.get(notes.size()-1).frame;
-		// TODO set length of last note such that amp0 * 0.1 = amp0 + duration
+		if (mNotes.size() > 0) {
+			Note lastNote = mNotes.get(mNotes.size() - 1);
+			float reqAmp = 0.1f * mData.get(lastNote.frame);
+
+			for (int i = lastNote.frame; i < mData.size(); i++) {
+				if (mData.get(i) < reqAmp)
+					lastNote.duration = i - lastNote.frame;
+			}
+		}
 	}
 
-	public void analyzeFrequencies(int freqWindowSizeLog2, float freqScalar, float freqA4) {
+	public void analyzeFrequencies(int freqWindowSizeLog2, float freqA4, ProgressBar progressBar) {
+		progressBar.setProgress(0);
+
 		// determine frequency using FFT
-		for (Note n : notes) {
+		for (Note n : mNotes) {
+			progressBar.setProgress(progressBar.getProgress() + 1);
+
 			int windowSize = (int) Math.pow(2, freqWindowSizeLog2);
 			Complex[] input = new Complex[windowSize];
 			for (int i = 0; i < windowSize; i++) {
@@ -88,7 +99,7 @@ public class Interpreter {
 			}
 
 			// sinusoid frequency
-			float hz = framesPerSecond * maxInd / windowSize * freqScalar;
+			float hz = framesPerSecond * maxInd / windowSize;
 			Log.i("MusicInterpreter",
 					"Frequency identified: "
 							+ hz + "Hz\n"
@@ -100,6 +111,8 @@ public class Interpreter {
 
 			n.setFreq(hz, freqA4);
 		}
+
+        progressBar.setProgress(progressBar.getMax());
 	}
 	
 	private <T> ArrayList<T> resolveList(ArrayList<Integer> indices, ArrayList<T> data) {

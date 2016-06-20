@@ -23,7 +23,8 @@
     <string name="analysis_title">4. Analysis</string>
     <string name="analyze_file_info">In this step, you have to specify the required parameters for analysis and make sure the results are fine.</string>
     <string name="analyze_file_button">Analyze!</string>
-    <string name="analysis_frequencyOffset">Frequency offset:</string>
+    <string name="playPauseButton_text">Play / Pause</string>
+    <string name="stopButton_text">Stop</string>
 
     <string name="scroll_block_msg">Complete this screen before moving on!</string>
 </resources>

@@ -3,11 +3,11 @@ package me.marc_himmelberger.musicinterpreter.interpretation;
 public class Note {
 	private final static String[] NAMES = new String[]{"A", "A#/Bb", "B", "C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab"};
 	
-	public int frame;
-	public int duration;
-	public int stepsFromFixed;
-	public String note;
-	private double freq;
+	public final int frame;
+	public int duration = 0;
+	public int stepsFromFixed = 0;
+	public String note = "";
+	private double freq = 0;
 	
 	public Note(int position) {
 		frame = position;
@@ -41,7 +41,7 @@ public class Note {
 		int stepsUp = tmpStepsUp % 12;
 		
 		// get note name 'stepsUp' steps upwards from A, append octave (floor(steps up from C0 /12))
-		return NAMES[stepsUp] + ((stepsFromFixed + 9/*to C4*/ + 48 /*to C0*/) / 12);
+		return NAMES[stepsUp]; // DON'T DISPLAY OCTAVE... + ((stepsFromFixed + 9/*to C4*/ + 48 /*to C0*/) / 12);
 	}
 	
 	private int round(float f) {

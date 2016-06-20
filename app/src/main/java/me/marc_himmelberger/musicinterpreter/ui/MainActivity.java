@@ -12,7 +12,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -126,7 +125,7 @@ public class MainActivity extends FragmentActivity {
                 public void OnDecodeComplete(ArrayList<Short> data) {
                     // successfully read file -> unlock next screen, update WaveformView, fill ProgressBar
                     samples = data;
-                    mViewPagerLock.screenUnlocked = 3;
+                    mViewPagerLock.screenUnlocked = 2;
 
                     findViewById(R.id.waveform).postInvalidate();
                     progressBar.setProgress(progressBar.getMax());
@@ -183,34 +182,46 @@ public class MainActivity extends FragmentActivity {
 
     void analyze() {
         AsyncTask<Void, Void, Void> analyzeTask = new AsyncTask<Void, Void, Void>() {
-            float freqScalar;
             int windowSizeLog2;
+            ProgressBar progressBar;
 
             @Override
             protected void onPreExecute() {
-                findViewById(R.id.analyze_idleBar).setVisibility(View.VISIBLE);
+                findViewById(R.id.analyzeButton).setEnabled(false);
 
-                SeekBar frequencyScalarBar = (SeekBar) findViewById(R.id.param_frequencyScalar);
+                progressBar = (ProgressBar) findViewById(R.id.analyzeProgressBar);
+                progressBar.setMax(mInterpreter.mNotes.size());
+                progressBar.setIndeterminate(true);
+
                 SeekBar windowSizeBar = (SeekBar) findViewById(R.id.param_windowSize);
 
-                freqScalar = (float) Math.pow(2d, frequencyScalarBar.getProgress() - 3);
                 windowSizeLog2 = windowSizeBar.getProgress() + 9;
             }
 
             @Override
             @Nullable
             protected Void doInBackground(Void... voids) {
-                mInterpreter.analyzeFrequencies(windowSizeLog2, freqScalar, 440f);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressBar.setIndeterminate(false);
+                    }
+                });
+                mInterpreter.analyzeFrequencies(windowSizeLog2, 440f, progressBar);
                 return null;
             }
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                findViewById(R.id.analyze_idleBar).setVisibility(View.INVISIBLE);
+                findViewById(R.id.analyzeButton).setEnabled(true);
                 findViewById(R.id.resultsView).postInvalidate();
             }
         };
 
         analyzeTask.execute();
+    }
+
+    Uri getSelectedUri() {
+        return selectedUri;
     }
 }

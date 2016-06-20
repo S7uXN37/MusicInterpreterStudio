@@ -12,6 +12,7 @@ import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 
+import me.marc_himmelberger.musicinterpreter.R;
 import me.marc_himmelberger.musicinterpreter.interpretation.Interpreter;
 import me.marc_himmelberger.musicinterpreter.interpretation.Note;
 
@@ -51,7 +52,7 @@ public class WaveformPreview extends WaveformView {
         float pxPerSample = 1 / (float) mWaveform.framesPerPx;
         float windowLength = pxPerSample * (int) Math.pow(2d, getWindowSizeLog2());
 
-        for (Note n : mInterpreter.notes) {
+        for (Note n : mInterpreter.mNotes) {
             float x = n.frame * pxPerSample;
 
             mPaint.setColor(Color.RED);
@@ -91,9 +92,15 @@ public class WaveformPreview extends WaveformView {
             @Override
             protected void onPostExecute(Void aVoid) {
                 mIdleBar.setIndeterminate(false);
+                if (ViewPagerLock.screenUnlocked == 2)
+                    ViewPagerLock.screenUnlocked = 3;
 
                 mSensitivityBar.setEnabled(true);
                 mThresholdBar.setEnabled(true);
+
+                ProgressBar analysisProgressBar = (ProgressBar) findViewById(R.id.analyzeProgressBar);
+                if (analysisProgressBar != null)
+                    analysisProgressBar.setProgress(0);
 
                 postInvalidate();
             }
