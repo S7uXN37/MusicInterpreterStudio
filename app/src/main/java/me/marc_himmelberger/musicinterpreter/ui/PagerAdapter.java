@@ -29,7 +29,7 @@ class PagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 5;
+        return 4;
     }
 
     @Override
@@ -48,9 +48,6 @@ class PagerAdapter extends FragmentPagerAdapter {
                 break;
             case 3:
                 strId = R.string.analysis_title;
-                break;
-            case 4:
-                strId = R.string.results_title;
                 break;
             default:
                 return super.getPageTitle(position);

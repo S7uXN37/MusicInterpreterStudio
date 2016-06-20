@@ -72,7 +72,11 @@ public class WaveformPreview extends WaveformView {
             protected void onPreExecute() {
                 sensitivity = getSensitivity();
                 threshold = getThreshold();
+
                 mIdleBar.setIndeterminate(true);
+
+                mSensitivityBar.setEnabled(false);
+                mThresholdBar.setEnabled(false);
             }
 
             @Override
@@ -87,6 +91,10 @@ public class WaveformPreview extends WaveformView {
             @Override
             protected void onPostExecute(Void aVoid) {
                 mIdleBar.setIndeterminate(false);
+
+                mSensitivityBar.setEnabled(true);
+                mThresholdBar.setEnabled(true);
+
                 postInvalidate();
             }
         };

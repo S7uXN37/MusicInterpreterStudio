@@ -58,6 +58,7 @@ public class Interpreter {
 		}
 		if (notes.size() > 0)
 			notes.get(notes.size()-1).duration = mData.size() - notes.get(notes.size()-1).frame;
+		// TODO set length of last note such that amp0 * 0.1 = amp0 + duration
 	}
 
 	public void analyzeFrequencies(int freqWindowSizeLog2, float freqScalar, float freqA4) {

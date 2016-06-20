@@ -100,9 +100,10 @@ public class InterpreterFragment extends Fragment {
                     }
                 });
 
-                break;
-            case 4:
-                rootView = inflater.inflate(R.layout.fragment_results, container, false);
+                ((AnalysisView) rootView.findViewById(R.id.resultsView)).setInterpreter(
+                        ((MainActivity) getActivity()).mInterpreter
+                );
+
                 break;
             default:
                 return null;

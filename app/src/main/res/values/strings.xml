@@ -25,8 +25,5 @@
     <string name="analyze_file_button">Analyze!</string>
     <string name="analysis_frequencyOffset">Frequency offset:</string>
 
-    <string name="results_title">5. Results</string>
-    <string name="results_info">These are the results:</string>
-
     <string name="scroll_block_msg">Complete this screen before moving on!</string>
 </resources>

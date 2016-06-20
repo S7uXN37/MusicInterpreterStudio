@@ -207,7 +207,7 @@ public class MainActivity extends FragmentActivity {
             @Override
             protected void onPostExecute(Void aVoid) {
                 findViewById(R.id.analyze_idleBar).setVisibility(View.INVISIBLE);
-                // TODO update view
+                findViewById(R.id.resultsView).postInvalidate();
             }
         };
 
