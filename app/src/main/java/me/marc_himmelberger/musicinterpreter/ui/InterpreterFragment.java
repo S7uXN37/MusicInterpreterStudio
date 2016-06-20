@@ -51,6 +51,7 @@ public class InterpreterFragment extends Fragment {
                 final WaveformPreview preview = ((WaveformPreview) rootView.findViewById(R.id.waveform_preview));
                 final SeekBar sensitivityBar = (SeekBar) rootView.findViewById(R.id.param_sensitivity);
                 final SeekBar thresholdBar = (SeekBar) rootView.findViewById(R.id.param_threshold);
+                final SeekBar windowSizeBar = (SeekBar) rootView.findViewById(R.id.param_windowSize);
                 final ProgressBar idleBar = (ProgressBar) rootView.findViewById(R.id.param_idleBar);
 
                 SeekBar.OnSeekBarChangeListener previewUpdater = new SeekBar.OnSeekBarChangeListener() {
@@ -66,11 +67,25 @@ public class InterpreterFragment extends Fragment {
                             preview.update();
                     }
                 };
+                SeekBar.OnSeekBarChangeListener previewInvalidator = new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) { }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) { }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                        if (!idleBar.isIndeterminate())
+                            preview.postInvalidate();
+                    }
+                };
 
                 sensitivityBar.setOnSeekBarChangeListener(previewUpdater);
                 thresholdBar.setOnSeekBarChangeListener(previewUpdater);
+                windowSizeBar.setOnSeekBarChangeListener(previewInvalidator);
 
-                preview.setParameterInputs(sensitivityBar, thresholdBar, idleBar);
+                preview.setParameterInputs(sensitivityBar, thresholdBar, windowSizeBar, idleBar);
                 preview.setInterpreter(((MainActivity) getActivity()).mInterpreter);
                 preview.setParentActivity(getActivity());
 

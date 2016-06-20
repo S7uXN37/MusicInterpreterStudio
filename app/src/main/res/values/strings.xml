@@ -18,11 +18,11 @@
     <string name="parameters_info">Here you can adjust the parameters for identifying notes.</string>
     <string name="parameters_sensitivity">Sensitivity:</string>
     <string name="parameters_threshold">Amplitude threshold:</string>
+    <string name="parameters_windowSize">Window size:</string>
 
     <string name="analysis_title">4. Analysis</string>
     <string name="analyze_file_info">In this step, you have to specify the required parameters for analysis and make sure the results are fine.</string>
     <string name="analyze_file_button">Analyze!</string>
-    <string name="analysis_windowSize">Window size:</string>
     <string name="analysis_frequencyOffset">Frequency offset:</string>
 
     <string name="results_title">5. Results</string>

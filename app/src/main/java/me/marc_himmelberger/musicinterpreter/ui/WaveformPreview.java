@@ -21,6 +21,7 @@ public class WaveformPreview extends WaveformView {
     private Interpreter mInterpreter;
     private SeekBar mSensitivityBar;
     private SeekBar mThresholdBar;
+    private SeekBar mWindowSizeBar;
     private ProgressBar mIdleBar;
 
     public WaveformPreview(Context context) {
@@ -38,7 +39,7 @@ public class WaveformPreview extends WaveformView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        if (isInEditMode() || super.mWaveform.mMainActivity.getSamples() == null)
+        if (isInEditMode() || super.mWaveform.mMainActivity == null || super.mWaveform.mMainActivity.getSamples() == null)
             return;
 
         float thresholdY = mWaveform.yOffset - getThreshold() * mWaveform.pxPerSampleVal;
@@ -48,11 +49,17 @@ public class WaveformPreview extends WaveformView {
         Log.v("W", "mPaint=" + mPaint + " thresholdY=" + thresholdY + " offset=" + mWaveform.yOffset);
 
         float pxPerSample = 1 / (float) mWaveform.framesPerPx;
+        float windowLength = pxPerSample * (int) Math.pow(2d, getWindowSizeLog2());
 
         for (Note n : mInterpreter.notes) {
             float x = n.frame * pxPerSample;
 
+            mPaint.setColor(Color.RED);
             canvas.drawLine(x, 0, x, canvas.getHeight(), mPaint);
+
+
+            mPaint.setAlpha(50);
+            canvas.drawRect(x, 0, x + windowLength, canvas.getHeight(), mPaint);
         }
     }
 
@@ -87,9 +94,15 @@ public class WaveformPreview extends WaveformView {
         updateTask.execute();
     }
 
-    void setParameterInputs(final SeekBar sensitivityBar, final SeekBar thresholdBar, final ProgressBar idleBar) {
+    void setParameterInputs(
+            final SeekBar sensitivityBar,
+            final SeekBar thresholdBar,
+            final SeekBar windowSizeBar,
+            final ProgressBar idleBar
+    ) {
         mSensitivityBar = sensitivityBar;
         mThresholdBar = thresholdBar;
+        mWindowSizeBar = windowSizeBar;
         mIdleBar = idleBar;
     }
 
@@ -101,5 +114,9 @@ public class WaveformPreview extends WaveformView {
     @UiThread
     private int getSensitivity() {
         return mSensitivityBar.getProgress() + 1000;
+    }
+
+    private int getWindowSizeLog2() {
+        return mWindowSizeBar.getProgress() + 9;
     }
 }

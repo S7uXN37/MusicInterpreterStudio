@@ -32,19 +32,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/analysis_windowSize" />
-
-            <SeekBar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/param_windowSize"
-                android:max="4"
-                android:progress="3" /> <!-- sizeLog2 = progress + 9 -->
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="@string/analysis_frequencyOffset" />
 
             <SeekBar
