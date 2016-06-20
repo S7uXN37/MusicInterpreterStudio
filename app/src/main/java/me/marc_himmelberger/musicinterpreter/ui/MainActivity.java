@@ -180,6 +180,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     void analyze() {
-        // TODO
+        mInterpreter.analyzeFrequency();
+        // TODO update view
     }
 }
