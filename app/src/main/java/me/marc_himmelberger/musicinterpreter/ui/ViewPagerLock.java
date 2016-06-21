@@ -8,7 +8,7 @@ import android.widget.ProgressBar;
 import me.marc_himmelberger.musicinterpreter.R;
 
 class ViewPagerLock implements ViewPager.OnPageChangeListener {
-    public static int screenUnlocked = 0;
+    int screenUnlocked = 0;
 
     private final Activity mActivity;
 

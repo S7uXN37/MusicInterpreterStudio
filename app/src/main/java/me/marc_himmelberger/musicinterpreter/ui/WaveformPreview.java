@@ -92,8 +92,10 @@ public class WaveformPreview extends WaveformView {
             @Override
             protected void onPostExecute(Void aVoid) {
                 mIdleBar.setIndeterminate(false);
-                if (ViewPagerLock.screenUnlocked == 2)
-                    ViewPagerLock.screenUnlocked = 3;
+
+                ViewPagerLock vpl = mWaveform.mMainActivity.mViewPagerLock;
+                if (vpl.screenUnlocked == 2)
+                    vpl.screenUnlocked = 3;
 
                 mSensitivityBar.setEnabled(true);
                 mThresholdBar.setEnabled(true);

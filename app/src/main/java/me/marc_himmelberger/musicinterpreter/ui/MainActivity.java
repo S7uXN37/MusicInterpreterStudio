@@ -30,7 +30,7 @@ public class MainActivity extends FragmentActivity {
 	
 	Interpreter mInterpreter;
     MediaPlayer mMediaPlayer;
-    private ViewPagerLock mViewPagerLock;
+    ViewPagerLock mViewPagerLock;
 
     private Uri selectedUri;
     private ArrayList<Short> samples = null;
@@ -69,7 +69,7 @@ public class MainActivity extends FragmentActivity {
                 ((TextView) findViewById(R.id.filePath)).setText(selectedUri.toString());
 
                 // unlock next screen
-                ViewPagerLock.screenUnlocked = 1;
+                mViewPagerLock.screenUnlocked = 1;
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
@@ -126,7 +126,7 @@ public class MainActivity extends FragmentActivity {
                 public void OnDecodeComplete(ArrayList<Short> data) {
                     // successfully read file -> unlock next screen, update WaveformView, fill ProgressBar
                     samples = data;
-                    ViewPagerLock.screenUnlocked = 2;
+                    mViewPagerLock.screenUnlocked = 2;
 
                     findViewById(R.id.waveform).postInvalidate();
                     progressBar.setProgress(progressBar.getMax());
