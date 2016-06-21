@@ -4,9 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,8 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
-
-import java.io.IOException;
 
 import me.marc_himmelberger.musicinterpreter.R;
 
@@ -113,65 +109,28 @@ public class InterpreterFragment extends Fragment {
                         ((MainActivity) getActivity()).mInterpreter
                 );
 
-                final MediaPlayer mediaPlayer = new MediaPlayer();
+                final MainActivity mMainActivity = (MainActivity) getActivity();
                 final View playPauseButton = rootView.findViewById(R.id.playPauseButton);
                 final View stopButton = rootView.findViewById(R.id.stopButton);
 
-                AsyncTask<Void, Void, Void> mediaSetupTask = new AsyncTask<Void, Void, Void>() {
-                    @Override
-                    protected void onPreExecute() {
-                        playPauseButton.setEnabled(false);
-                        stopButton.setEnabled(false);
-                        Log.v("m", "setup...");
-                    }
-
-                    @Override
-                    @Nullable
-                    protected Void doInBackground(Void... voids) {
-                        try {
-                            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-
-                            Context context = getContext();
-                            MainActivity mainActivity = ((MainActivity) getActivity());
-
-                            if (context == null || mainActivity == null || mainActivity.getSelectedUri() == null) {
-                                mediaPlayer.release();
-                                return null;
-                            }
-                            mediaPlayer.setDataSource(context, mainActivity.getSelectedUri());
-                            mediaPlayer.prepare();
-                        } catch (IOException e) {
-                            Log.e("MusicInterpreter", "Error playing back file", e);
-                        }
-                        return null;
-                    }
-
-                    @Override
-                    protected void onPostExecute(Void aVoid) {
-                        playPauseButton.setEnabled(true);
-                        stopButton.setEnabled(true);
-                        Log.v("m", "setup done");
-                    }
-                };
-                mediaSetupTask.execute();
-                analysisView.setMediaPlayer(mediaPlayer);
+                analysisView.setMediaPlayer(mMainActivity);
 
                 playPauseButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Log.v("m", "play/pause");
-                        if (mediaPlayer.isPlaying())
-                            mediaPlayer.pause();
+                        if (mMainActivity.mMediaPlayer.isPlaying())
+                            mMainActivity.mMediaPlayer.pause();
                         else
-                            mediaPlayer.start();
+                            mMainActivity.mMediaPlayer.start();
                     }
                 });
                 stopButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Log.v("m", "stop");
-                        mediaPlayer.pause();
-                        mediaPlayer.seekTo(0);
+                        mMainActivity.mMediaPlayer.pause();
+                        mMainActivity.mMediaPlayer.seekTo(0);
                     }
                 });
 
@@ -181,28 +140,30 @@ public class InterpreterFragment extends Fragment {
                     public void onAudioFocusChange(int i) {
                         switch (i) {
                             case AudioManager.AUDIOFOCUS_GAIN:
-                                if (!mediaPlayer.isPlaying()) mediaPlayer.start();
-                                mediaPlayer.setVolume(1.0f, 1.0f);
+                                if (!mMainActivity.mMediaPlayer.isPlaying()) mMainActivity.mMediaPlayer.start();
+                                mMainActivity.mMediaPlayer.setVolume(1.0f, 1.0f);
                                 break;
 
                             case AudioManager.AUDIOFOCUS_LOSS:
-                                if (mediaPlayer.isPlaying()) mediaPlayer.stop();
-                                mediaPlayer.release();
+                                if (mMainActivity.mMediaPlayer.isPlaying()) mMainActivity.mMediaPlayer.pause();
                                 break;
 
                             case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
-                                if (mediaPlayer.isPlaying()) mediaPlayer.pause();
+                                if (mMainActivity.mMediaPlayer.isPlaying()) mMainActivity.mMediaPlayer.pause();
                                 break;
 
                             case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
-                                if (mediaPlayer.isPlaying()) mediaPlayer.setVolume(0.1f, 0.1f);
+                                if (mMainActivity.mMediaPlayer.isPlaying()) mMainActivity.mMediaPlayer.setVolume(0.1f, 0.1f);
+                                break;
+
+                            default:
                                 break;
                         }
                     }
                 }, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
 
                 if (result != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-                    mediaPlayer.release();
+                    Log.w("MusicInterpreter", "Could not acquire AudioFocus!");
                 }
 
                 break;

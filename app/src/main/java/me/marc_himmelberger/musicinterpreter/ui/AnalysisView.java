@@ -15,9 +15,10 @@ import me.marc_himmelberger.musicinterpreter.interpretation.Note;
 
 public class AnalysisView extends View {
     private final static int noteColor = Color.rgb(0, 204, 255);
+    final static int MSG_WHAT = 1;
+    static Handler cursorUpdate = null;
 
     private final Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private MediaPlayer mMediaPlayer;
     private int cursorPos = 0;
     private Interpreter mInterpreter;
 
@@ -32,27 +33,30 @@ public class AnalysisView extends View {
         mInterpreter = interpreter;
     }
 
-    public void setMediaPlayer(final MediaPlayer mediaPlayer) {
-        mMediaPlayer = mediaPlayer;
-        final Handler cursorUpdate = new Handler() {
+    public void setMediaPlayer(final MainActivity mainActivity) {
+        cursorUpdate = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 if (msg.what == 1) {
-                    msg = obtainMessage(1);
+                    if (mainActivity.mMediaPlayer == null)
+                        return; // stop onDestroy
+
+                    msg = obtainMessage(MSG_WHAT);
                     sendMessageDelayed(msg, 100);
 
                     try {
-                        if (mMediaPlayer == null || !mMediaPlayer.isPlaying())
-                            return;
+                        if (!mainActivity.mMediaPlayer.isPlaying())
+                            return; // skip if paused/stopped
                     } catch (IllegalStateException e) {
-                        return;
+                        return; // skip if not initialized
                     }
-                    cursorPos = mMediaPlayer.getCurrentPosition();
+
+                    cursorPos = mainActivity.mMediaPlayer.getCurrentPosition();
                     postInvalidate();
                 }
             }
         };
-        cursorUpdate.sendEmptyMessage(1);
+        cursorUpdate.sendEmptyMessage(MSG_WHAT);
     }
 
     @Override

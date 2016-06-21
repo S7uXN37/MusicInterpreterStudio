@@ -29,6 +29,7 @@ public class MainActivity extends FragmentActivity {
 	public static final int GET_FILE_REQ_CODE = 0;
 	
 	Interpreter mInterpreter;
+    MediaPlayer mMediaPlayer;
     private ViewPagerLock mViewPagerLock;
 
     private Uri selectedUri;
@@ -68,7 +69,7 @@ public class MainActivity extends FragmentActivity {
                 ((TextView) findViewById(R.id.filePath)).setText(selectedUri.toString());
 
                 // unlock next screen
-                mViewPagerLock.screenUnlocked = 1;
+                ViewPagerLock.screenUnlocked = 1;
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
@@ -87,15 +88,18 @@ public class MainActivity extends FragmentActivity {
                 @Override
                 @Nullable
                 protected Void doInBackground(Void[] objects) {
-                    MediaPlayer mediaPlayer = null;
+                    if (mMediaPlayer != null)
+                        mMediaPlayer.release();
+
+                    mMediaPlayer = null;
 
                     try {
-                        mediaPlayer = new MediaPlayer();
-                        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                        mediaPlayer.setDataSource(getApplicationContext(), selectedUri);
-                        mediaPlayer.prepare();
+                        mMediaPlayer = new MediaPlayer();
+                        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                        mMediaPlayer.setDataSource(getApplicationContext(), selectedUri);
+                        mMediaPlayer.prepare();
 
-                        final int total_ms = mediaPlayer.getDuration();
+                        final int total_ms = mMediaPlayer.getDuration();
 
                         runOnUiThread(new Runnable() {
                             @Override
@@ -106,9 +110,6 @@ public class MainActivity extends FragmentActivity {
                         });
                     } catch (IOException e) {
                         e.printStackTrace();
-                    } finally {
-                        if (mediaPlayer != null)
-                           mediaPlayer.release();
                     }
                     return null;
                 }
@@ -125,7 +126,7 @@ public class MainActivity extends FragmentActivity {
                 public void OnDecodeComplete(ArrayList<Short> data) {
                     // successfully read file -> unlock next screen, update WaveformView, fill ProgressBar
                     samples = data;
-                    mViewPagerLock.screenUnlocked = 2;
+                    ViewPagerLock.screenUnlocked = 2;
 
                     findViewById(R.id.waveform).postInvalidate();
                     progressBar.setProgress(progressBar.getMax());
@@ -223,5 +224,16 @@ public class MainActivity extends FragmentActivity {
 
     Uri getSelectedUri() {
         return selectedUri;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        mMediaPlayer.release();
+        mMediaPlayer = null;
+
+        AnalysisView.cursorUpdate.removeMessages(AnalysisView.MSG_WHAT);
+        AnalysisView.cursorUpdate = null;
     }
 }
