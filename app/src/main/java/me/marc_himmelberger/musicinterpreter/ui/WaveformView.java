@@ -9,7 +9,7 @@ import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 
-class WaveformView extends View {
+public class WaveformView extends View {
     private final Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     Waveform mWaveform;
 

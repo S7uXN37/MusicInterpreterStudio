@@ -222,10 +222,6 @@ public class MainActivity extends FragmentActivity {
         analyzeTask.execute();
     }
 
-    Uri getSelectedUri() {
-        return selectedUri;
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
