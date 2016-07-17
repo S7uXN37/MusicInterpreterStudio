@@ -231,7 +231,7 @@
     <dimen name="design_tab_text_size_2line">12sp</dimen>
     <item format="float" name="disabled_alpha_material_dark" type="dimen">0.30</item>
     <item format="float" name="disabled_alpha_material_light" type="dimen">0.26</item>
-    <dimen name="fragment_separation_vertical">32dp</dimen>
+    <dimen name="fragment_separation_vertical">24dp</dimen>
     <item format="float" name="highlight_alpha_material_colored" type="dimen">0.26</item>
     <item format="float" name="highlight_alpha_material_dark" type="dimen">0.20</item>
     <item format="float" name="highlight_alpha_material_light" type="dimen">0.12</item>
@@ -291,8 +291,9 @@
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="analysis_title">4. Analysis</string>
+    <string name="analyze_cutoffFreqBar_text">Cutoff frequency:</string>
     <string name="analyze_file_button">Analyze!</string>
-    <string name="analyze_file_info">In this step, you have to specify the required parameters for analysis and make sure the results are fine.</string>
+    <string name="analyze_file_info">Analyze the notes.</string>
     <string name="app_name">MusicInterpreter</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
     <string name="bottom_sheet_behavior" translatable="false">android.support.design.widget.BottomSheetBehavior</string>
@@ -300,15 +301,16 @@
     <string name="downButton_text">Down</string>
     <string name="file_path_hint">Select a file…</string>
     <string name="file_path_prefix">Selected file:</string>
-    <string name="file_selection_info">Here you can choose the file you want to analyze.</string>
+    <string name="file_selection_info">Choose the file you want to analyze.</string>
     <string name="open_file_button">Select file</string>
     <string name="open_file_title">1. Open file</string>
-    <string name="parameters_info">Here you can adjust the parameters for identifying notes.</string>
+    <string name="parameters_info">Adjust the parameters for identifying notes.</string>
     <string name="parameters_sensitivity">Sensitivity:</string>
     <string name="parameters_threshold">Amplitude threshold:</string>
     <string name="parameters_title">3. Parameters</string>
     <string name="parameters_windowSize">Window size:</string>
-    <string name="playPauseButton_text">Play / Pause</string>
+    <string name="playPauseButton_textPause">Pause</string>
+    <string name="playPauseButton_textPlay">Play</string>
     <string name="read_file_button">Read file</string>
     <string name="read_file_error">Error: Unable to read file!</string>
     <string name="read_file_info">Here you can read the file contents.</string>

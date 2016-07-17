@@ -20,6 +20,8 @@ class Complex {
 
     // return abs/modulus/magnitude and angle/phase/argument
     public double abs()   { return Math.hypot(re, im); }  // Math.sqrt(re*re + im*im)
+    public double getRe() { return re; }
+    public double getIm() { return im; }
 
     // return a new Complex object whose value is (this + b)
     public Complex plus(Complex b) {

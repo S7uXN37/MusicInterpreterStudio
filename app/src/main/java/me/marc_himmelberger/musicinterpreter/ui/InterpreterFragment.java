@@ -109,7 +109,7 @@ public class InterpreterFragment extends Fragment {
                 final View stopButton = rootView.findViewById(R.id.stopButton);
                 final View upButton = rootView.findViewById(R.id.upButton);
                 final View downButton = rootView.findViewById(R.id.downButton);
-                final AnalysisView analysisView = (AnalysisView) rootView.findViewById(R.id.resultsView);
+                final AnalysisView analysisView = (AnalysisView) rootView.findViewById(R.id.analysisView);
 
                 analysisView.setInterpreter(mMainActivity.mInterpreter);
                 analysisView.setMediaPlayer(mMainActivity);
