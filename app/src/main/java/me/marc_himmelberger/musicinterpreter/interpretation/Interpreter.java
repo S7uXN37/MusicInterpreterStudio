@@ -154,4 +154,10 @@ public class Interpreter {
 		
 		return maximaIndices;
 	}
+
+	public void shiftNotes(int amount) {
+		for (Note n : mNotes) {
+			n.shift(amount);
+		}
+	}
 }

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 
@@ -103,33 +104,49 @@ public class InterpreterFragment extends Fragment {
                     }
                 });
 
-                AnalysisView analysisView = (AnalysisView) rootView.findViewById(R.id.resultsView);
-                analysisView.setInterpreter(
-                        ((MainActivity) getActivity()).mInterpreter
-                );
-
                 final MainActivity mMainActivity = (MainActivity) getActivity();
-                final View playPauseButton = rootView.findViewById(R.id.playPauseButton);
+                final Button playPauseButton = (Button) rootView.findViewById(R.id.playPauseButton);
                 final View stopButton = rootView.findViewById(R.id.stopButton);
+                final View upButton = rootView.findViewById(R.id.upButton);
+                final View downButton = rootView.findViewById(R.id.downButton);
+                final AnalysisView analysisView = (AnalysisView) rootView.findViewById(R.id.resultsView);
 
+                analysisView.setInterpreter(mMainActivity.mInterpreter);
                 analysisView.setMediaPlayer(mMainActivity);
 
                 playPauseButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.v("m", "play/pause");
-                        if (mMainActivity.mMediaPlayer.isPlaying())
+                        if (mMainActivity.mMediaPlayer.isPlaying()) {
                             mMainActivity.mMediaPlayer.pause();
-                        else
+                            playPauseButton.setText(getString(R.string.playPauseButton_textPlay));
+                        } else {
                             mMainActivity.mMediaPlayer.start();
+                            playPauseButton.setText(getString(R.string.playPauseButton_textPause));
+                        }
                     }
                 });
                 stopButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.v("m", "stop");
                         mMainActivity.mMediaPlayer.pause();
                         mMainActivity.mMediaPlayer.seekTo(0);
+
+                        playPauseButton.setText(getString(R.string.playPauseButton_textPlay));
+                    }
+                });
+                upButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mMainActivity.mInterpreter.shiftNotes(1);
+                        analysisView.postInvalidate();
+                    }
+                });
+                downButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mMainActivity.mInterpreter.shiftNotes(-1);
+                        analysisView.postInvalidate();
                     }
                 });
 

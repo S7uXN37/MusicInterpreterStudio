@@ -54,4 +54,9 @@ public class Note {
 	public String toString() {
 		return "frame:" + frame + " freq:" + freq + " note:" + note + " duration:" + duration;
 	}
+
+	public void shift(int amount) {
+		stepsFromFixed += amount;
+		note = lookupNote();
+	}
 }

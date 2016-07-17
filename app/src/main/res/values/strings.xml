@@ -4,7 +4,7 @@
     <string name="app_name">MusicInterpreter</string>
 
     <string name="open_file_title">1. Open file</string>
-    <string name="file_selection_info">Here you can choose the file you want to analyze.</string>
+    <string name="file_selection_info">Choose the file you want to analyze.</string>
     <string name="file_path_prefix">Selected file:</string>
     <string name="file_path_hint">Select a file&#8230;</string>
     <string name="open_file_button">Select file</string>
@@ -15,16 +15,19 @@
     <string name="read_file_error">Error: Unable to read file!</string>
 
     <string name="parameters_title">3. Parameters</string>
-    <string name="parameters_info">Here you can adjust the parameters for identifying notes.</string>
+    <string name="parameters_info">Adjust the parameters for identifying notes.</string>
     <string name="parameters_sensitivity">Sensitivity:</string>
     <string name="parameters_threshold">Amplitude threshold:</string>
     <string name="parameters_windowSize">Window size:</string>
 
     <string name="analysis_title">4. Analysis</string>
-    <string name="analyze_file_info">In this step, you have to specify the required parameters for analysis and make sure the results are fine.</string>
+    <string name="analyze_file_info">Analyze the notes.</string>
     <string name="analyze_file_button">Analyze!</string>
-    <string name="playPauseButton_text">Play / Pause</string>
+    <string name="playPauseButton_textPlay">Play</string>
+    <string name="playPauseButton_textPause">Pause</string>
     <string name="stopButton_text">Stop</string>
+    <string name="upButton_text">Up</string>
+    <string name="downButton_text">Down</string>
 
     <string name="scroll_block_msg">Complete this screen before moving on!</string>
 </resources>

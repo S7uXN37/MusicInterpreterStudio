@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
@@ -56,6 +57,15 @@ public class AnalysisView extends View {
             }
         };
         cursorUpdate.sendEmptyMessage(MSG_WHAT);
+
+        mainActivity.mMediaPlayer.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
+            @Override
+            public void onSeekComplete(MediaPlayer mediaPlayer) {
+                if ((cursorPos = mediaPlayer.getCurrentPosition()) == 0) {
+                    postInvalidate();
+                }
+            }
+        });
     }
 
     @Override

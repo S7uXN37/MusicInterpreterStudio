@@ -35,12 +35,28 @@
             android:text="@string/stopButton_text"
             android:id="@+id/stopButton"
             android:layout_alignParentTop="true"
+            android:layout_toStartOf="@+id/upButton" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/upButton_text"
+            android:id="@+id/upButton"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@+id/downButton" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/downButton_text"
+            android:id="@+id/downButton"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/playPauseButton_text"
+            android:text="@string/playPauseButton_textPlay"
             android:id="@+id/playPauseButton"
             android:layout_alignParentTop="true"
             android:layout_toStartOf="@+id/stopButton" />
