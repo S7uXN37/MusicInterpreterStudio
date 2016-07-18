@@ -76,7 +76,11 @@ public class Interpreter {
 			progressBar.setProgress(progressBar.getProgress() + 1);
 
 			int windowSize = (int) Math.pow(2, freqWindowSizeLog2);
-			Complex[] input = highPassFilter(windowSize, n.frame, freqCut);
+			Complex[] input = new Complex[windowSize];
+
+			for (int i = 0; i < windowSize; i++) {
+				input[i] = new Complex(mData.get(n.frame + i), 0d);
+			}
 
 			// FFT
 			Complex[] output = Fourier.fft(input);
@@ -110,26 +114,6 @@ public class Interpreter {
 		}
 
         progressBar.setProgress(progressBar.getMax());
-	}
-
-    /**
-     * Code from: <a href="https://en.wikipedia.org/wiki/High-pass_filter#Algorithmic_implementation">Wikipedia</a>
-     */
-	private Complex[] highPassFilter(int windowSize, int firstFrame, float freqCut) {
-		Complex[] filtered = new Complex[windowSize];
-        double sampleInterval = 1d / 44100d;
-        double alpha = 1d / (2d * Math.PI * sampleInterval * freqCut + 1);
-
-        filtered[0] = new Complex((double) mData.get(firstFrame), 0d);
-		for (int i = 1; i < windowSize; i++) {
-            short real = mData.get(firstFrame + i);
-            double deltaX = (double) (real - mData.get(firstFrame + i-1));
-            double cutReal = alpha * (filtered[i-1].getRe() + deltaX);
-
-			filtered[i] = new Complex(cutReal, 0d);
-		}
-
-		return filtered;
 	}
 	
 	private <T> ArrayList<T> resolveList(ArrayList<Integer> indices, ArrayList<T> data) {
