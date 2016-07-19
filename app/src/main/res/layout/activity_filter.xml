@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="me.marc_himmelberger.musicinterpreter.filtering.FilterActivity">
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:id="@+id/filters_frequency_SeekBar"
+        android:max="880"
+        android:progress="0" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/filters_frequency"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/filters_freqPrefix"
+        android:layout_below="@+id/filters_frequency_SeekBar"
+        android:layout_toEndOf="@+id/filters_player_ProgressBar" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/filters_frequency_SeekBar"
+        android:layout_alignParentStart="true"
+        android:id="@+id/highPass_button"
+        android:text="@string/filters_highPass" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lowPass_button"
+        android:text="@string/filters_lowPass"
+        android:clickable="false"
+        android:layout_below="@+id/filters_frequency_SeekBar"
+        android:layout_toEndOf="@+id/highPass_button" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/undo_button"
+        android:text="@string/filters_undo"
+        android:clickable="false"
+        android:layout_below="@+id/filters_frequency_SeekBar"
+        android:layout_toEndOf="@+id/lowPass_button" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/filters_player_ProgressBar"
+        android:max="100"
+        android:progress="0"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/filters_playPauseButton"
+        android:layout_alignBottom="@+id/filters_playPauseButton"
+        android:layout_alignTop="@+id/filters_playPauseButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/filters_playPauseButton"
+        android:text="@string/playPauseButton_textPlay"
+        android:clickable="false"
+        android:layout_toStartOf="@+id/filters_stopButton"
+        android:layout_alignParentBottom="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/filters_stopButton"
+        android:text="@string/stopButton_text"
+        android:clickable="false"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/filters_frequency_SeekBar" />
+
+</RelativeLayout>

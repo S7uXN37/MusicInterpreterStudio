@@ -46,6 +46,13 @@ public class InterpreterFragment extends Fragment {
                     }
                 });
 
+                rootView.findViewById(R.id.filterButton).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ((MainActivity) getActivity()).openFilterActivity();
+                    }
+                });
+
                 ((WaveformView) rootView.findViewById(R.id.waveform)).setParentActivity(getActivity());
 
                 break;
@@ -152,24 +159,27 @@ public class InterpreterFragment extends Fragment {
 
                 AudioManager audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
                 int result = audioManager.requestAudioFocus(new AudioManager.OnAudioFocusChangeListener() {
+                    boolean shouldPlay = true;
+
                     @Override
                     public void onAudioFocusChange(int i) {
                         switch (i) {
                             case AudioManager.AUDIOFOCUS_GAIN:
-                                if (!mMainActivity.mMediaPlayer.isPlaying()) mMainActivity.mMediaPlayer.start();
+                                if (!mMainActivity.mMediaPlayer.isPlaying() && shouldPlay)
+                                    mMainActivity.mMediaPlayer.start();
                                 mMainActivity.mMediaPlayer.setVolume(1.0f, 1.0f);
                                 break;
 
                             case AudioManager.AUDIOFOCUS_LOSS:
-                                if (mMainActivity.mMediaPlayer.isPlaying()) mMainActivity.mMediaPlayer.pause();
-                                break;
-
                             case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
-                                if (mMainActivity.mMediaPlayer.isPlaying()) mMainActivity.mMediaPlayer.pause();
+                                shouldPlay = mMainActivity.mMediaPlayer.isPlaying();
+                                if (mMainActivity.mMediaPlayer.isPlaying())
+                                    mMainActivity.mMediaPlayer.pause();
                                 break;
 
                             case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
-                                if (mMainActivity.mMediaPlayer.isPlaying()) mMainActivity.mMediaPlayer.setVolume(0.1f, 0.1f);
+                                if (mMainActivity.mMediaPlayer.isPlaying())
+                                    mMainActivity.mMediaPlayer.setVolume(0.1f, 0.1f);
                                 break;
 
                             default:

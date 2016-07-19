@@ -33,8 +33,19 @@
         android:max="1"
         android:progress="0"
         android:layout_alignBottom="@+id/readFileButton"
-        android:layout_toEndOf="@+id/readFileButton"
-        android:layout_below="@+id/textView3" />
+        android:layout_below="@+id/textView3"
+        android:layout_toStartOf="@+id/filterButton"
+        android:layout_toEndOf="@id/readFileButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/apply_filters_button"
+        android:id="@+id/filterButton"
+        android:clickable="false"
+        android:enabled="false"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentEnd="true" />
 
     <me.marc_himmelberger.musicinterpreter.ui.WaveformView
         android:layout_width="match_parent"

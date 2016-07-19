@@ -21,12 +21,14 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import me.marc_himmelberger.musicinterpreter.R;
+import me.marc_himmelberger.musicinterpreter.filtering.FilterActivity;
 import me.marc_himmelberger.musicinterpreter.interpretation.Interpreter;
 import me.marc_himmelberger.musicinterpreter.io.DecoderListener;
 import me.marc_himmelberger.musicinterpreter.io.Mp3Decoder;
 
 public class MainActivity extends FragmentActivity {
 	public static final int GET_FILE_REQ_CODE = 0;
+    public static final String EXTRA_SAMPLES = "me.marc_himmelberger.musicinterpreter.extra_samples";
 	
 	Interpreter mInterpreter;
     MediaPlayer mMediaPlayer;
@@ -79,6 +81,7 @@ public class MainActivity extends FragmentActivity {
     synchronized void readFile() {
         final ProgressBar progressBar = ((ProgressBar) findViewById(R.id.read_file_progress));
         findViewById(R.id.readFileButton).setEnabled(false);
+        findViewById(R.id.filterButton).setEnabled(false);
 
         progressBar.setIndeterminate(true);
 
@@ -130,6 +133,8 @@ public class MainActivity extends FragmentActivity {
 
                     findViewById(R.id.waveform).postInvalidate();
                     progressBar.setProgress(progressBar.getMax());
+
+                    findViewById(R.id.filterButton).setEnabled(true);
 
                     Log.v("Mp3Decoder", "Decoder completed, samples==null = " + (samples == null));
                 }
@@ -234,5 +239,10 @@ public class MainActivity extends FragmentActivity {
 
         AnalysisView.cursorUpdate.removeMessages(AnalysisView.MSG_WHAT);
         AnalysisView.cursorUpdate = null;
+    }
+
+    public void openFilterActivity() {
+        Intent openFilterAct = new Intent(this, FilterActivity.class);
+        openFilterAct.putExtra(EXTRA_SAMPLES, samples);
     }
 }
