@@ -296,12 +296,18 @@
     <string name="analyze_file_info">Analyze the notes.</string>
     <string name="app_name">MusicInterpreter</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="apply_filters_button">Apply filters</string>
     <string name="bottom_sheet_behavior" translatable="false">android.support.design.widget.BottomSheetBehavior</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
     <string name="downButton_text">Down</string>
     <string name="file_path_hint">Select a file…</string>
     <string name="file_path_prefix">Selected file:</string>
-    <string name="file_selection_info">Choose the file you want to analyze.</string>
+    <string name="file_selection_info">Choose the file you want to analyze. Apply filters if needed.</string>
+    <string name="filter_app_name">MusicInterpreter: Filters</string>
+    <string name="filters_freqPrefix">Frequency: </string>
+    <string name="filters_highPass">High-Pass</string>
+    <string name="filters_lowPass">Low-Pass</string>
+    <string name="filters_undo">Undo</string>
     <string name="open_file_button">Select file</string>
     <string name="open_file_title">1. Open file</string>
     <string name="parameters_info">Adjust the parameters for identifying notes.</string>

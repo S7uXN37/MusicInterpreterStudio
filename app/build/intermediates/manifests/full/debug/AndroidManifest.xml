@@ -26,6 +26,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="me.marc_himmelberger.musicinterpreter.filtering.FilterActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard"
+            android:label="@string/filter_app_name"
+            android:parentActivityName="me.marc_himmelberger.musicinterpreter.ui.MainActivity"
+            android:screenOrientation="landscape" >
+        </activity>
     </application>
 
 </manifest>
