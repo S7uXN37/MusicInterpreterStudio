@@ -23,7 +23,7 @@
 
     <string name="analysis_title">4. Analysis</string>
     <string name="analyze_file_info">Analyze the notes.</string>
-    <string name="analyze_cutoffFreqBar_text">Cutoff frequency:</string>
+    <string name="analyze_minRelAmpBar_text">Min. rel. amp. of extra notes:</string>
     <string name="analyze_file_button">Analyze!</string>
     <string name="playPauseButton_textPlay">Play</string>
     <string name="playPauseButton_textPause">Pause</string>

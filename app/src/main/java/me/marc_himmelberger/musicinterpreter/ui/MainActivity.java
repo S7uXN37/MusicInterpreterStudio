@@ -185,6 +185,7 @@ public class MainActivity extends FragmentActivity {
     void analyze() {
         AsyncTask<Void, Void, Void> analyzeTask = new AsyncTask<Void, Void, Void>() {
             int windowSizeLog2;
+            float minRelAmp;
             ProgressBar progressBar;
 
             @Override
@@ -196,8 +197,10 @@ public class MainActivity extends FragmentActivity {
                 progressBar.setIndeterminate(true);
 
                 SeekBar windowSizeBar = (SeekBar) findViewById(R.id.param_windowSize);
+                SeekBar minRelAmpBar = (SeekBar) findViewById(R.id.analyze_minRelAmp);
 
                 windowSizeLog2 = windowSizeBar.getProgress() + 9;
+                minRelAmp = minRelAmpBar.getProgress() / 1000f;
             }
 
             @Override
@@ -209,7 +212,7 @@ public class MainActivity extends FragmentActivity {
                         progressBar.setIndeterminate(false);
                     }
                 });
-                mInterpreter.analyzeFrequencies(windowSizeLog2, 440f, progressBar);
+                mInterpreter.analyzeFrequencies(windowSizeLog2, 440f, minRelAmp, progressBar);
                 return null;
             }
 

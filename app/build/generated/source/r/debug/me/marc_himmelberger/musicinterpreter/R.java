@@ -2733,7 +2733,7 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with_application=0x7f050011;
         public static final int abc_toolbar_collapse_description=0x7f050012;
         public static final int analysis_title=0x7f050020;
-        public static final int analyze_cutoffFreqBar_text=0x7f050021;
+        public static final int analyze_minRelAmpBar_text =0x7f050021;
         public static final int analyze_file_button=0x7f050022;
         public static final int analyze_file_info=0x7f050023;
         public static final int app_name=0x7f050024;

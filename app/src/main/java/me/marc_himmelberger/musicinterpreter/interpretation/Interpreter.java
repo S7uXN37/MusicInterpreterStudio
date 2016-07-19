@@ -4,9 +4,6 @@ import android.util.Log;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 public class Interpreter {
 	// FAIL-SAFE
@@ -78,7 +75,7 @@ public class Interpreter {
 		}
 	}
 
-	public void analyzeFrequencies(int freqWindowSizeLog2, float freqA4, ProgressBar progressBar) {
+	public void analyzeFrequencies(int freqWindowSizeLog2, float freqA4, float minRelAmp, ProgressBar progressBar) {
 		progressBar.setProgress(0);
 
 		ArrayList<Note> newNotes = new ArrayList<>();
@@ -111,28 +108,8 @@ public class Interpreter {
 				}
 			}
 
-			// find other notes, with >50% amplitude and not at indices k*maxInd
-			int scnd_maxInd = -1;
-			double scnd_maxVal = -1;
-			for (int i = 0; i < outMag.length/2; i++) {
-				boolean isOvertone = (i % maxInd == 0);
-
-				if (outMag[i] > scnd_maxVal && outMag[i] > 0.5f * maxVal && !isOvertone) {
-					scnd_maxVal = outMag[i];
-					scnd_maxInd = i;
-				}
-			}
-
 			// sinusoid frequency
 			float hz = framesPerSecond * maxInd / windowSize;
-
-			if (scnd_maxInd != -1) {
-				float scnd_hz = framesPerSecond * scnd_maxInd / windowSize;
-				Note scnd_note = new Note(n.frame);
-				scnd_note.setFreq(scnd_hz, freqA4);
-
-				newNotes.add(scnd_note);
-			}
 
 			Log.i("MusicInterpreter",
 					"Frequency identified: "
@@ -144,26 +121,47 @@ public class Interpreter {
 			);
 
 			n.setFreq(hz, freqA4);
+
+            // find other notes, with >minRelAmp amplitude and not at indices k*maxInd
+            int scnd_maxInd = -1;
+            double scnd_maxVal = -1;
+            for (int i = 0; i < outMag.length/2; i++) {
+                boolean isOvertone = (i % maxInd == 0);
+
+                if (outMag[i] > scnd_maxVal && outMag[i] > minRelAmp * maxVal && !isOvertone) {
+                    scnd_maxVal = outMag[i];
+                    scnd_maxInd = i;
+                }
+            }
+
+            if (scnd_maxInd != -1) {
+                float scnd_hz = framesPerSecond * scnd_maxInd / windowSize;
+                Note scnd_note = new Note(n.frame);
+                scnd_note.setFreq(scnd_hz, freqA4);
+                scnd_note.duration = n.duration;
+
+                newNotes.add(scnd_note);
+            }
 		}
 
-		SortedSet<Note> sortedNotes = new TreeSet<>(new Comparator<Note>() {
-			@Override
-			public int compare(Note n1, Note n2) {
-				if (n1.frame == n2.frame)
-					return 1;
-				else
-					return Integer.compare(n1.frame, n2.frame);
-			}
-		});
-		for (Note n : newNotes) {
-			sortedNotes.add(n);
-		}
-		for (Note n : mNotes) {
-			sortedNotes.add(n);
-		}
-
-		mNotes.clear();
-		for (Note n : sortedNotes) {
+//		SortedSet<Note> sortedNotes = new TreeSet<>(new Comparator<Note>() {
+//			@Override
+//			public int compare(Note n1, Note n2) {
+//				if (n1.frame == n2.frame)
+//					return 1;
+//				else
+//					return Integer.compare(n1.frame, n2.frame);
+//			}
+//		});
+//		for (Note n : newNotes) {
+//			sortedNotes.add(n);
+//		}
+//		for (Note n : mNotes) {
+//			sortedNotes.add(n);
+//		}
+//
+//		mNotes.clear();
+		for (Note n : newNotes /*sortedNotes*/) {
 			mNotes.add(n);
 		}
 

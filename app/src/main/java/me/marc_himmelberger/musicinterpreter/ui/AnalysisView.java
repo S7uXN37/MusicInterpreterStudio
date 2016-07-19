@@ -101,8 +101,10 @@ public class AnalysisView extends View {
 
             if (i == 0)
                 offset = n.frame;
-            if (i == numNotes - 1)
-                duration = n.frame + n.duration - offset;
+
+            int relEndTime = n.frame + n.duration - offset;
+            if (relEndTime > duration)
+                duration = relEndTime;
         }
 
 
