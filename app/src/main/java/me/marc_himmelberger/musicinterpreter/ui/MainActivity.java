@@ -27,7 +27,6 @@ import me.marc_himmelberger.musicinterpreter.io.Mp3Decoder;
 
 public class MainActivity extends FragmentActivity {
 	public static final int GET_FILE_REQ_CODE = 0;
-    public static final String EXTRA_SAMPLES = "me.marc_himmelberger.musicinterpreter.extra_samples";
 	
 	Interpreter mInterpreter;
     MediaPlayer mMediaPlayer;

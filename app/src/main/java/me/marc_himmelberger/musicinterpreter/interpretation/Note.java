@@ -13,10 +13,6 @@ public class Note {
 		frame = position;
 	}
 	
-	public double getFreq() {
-		return freq;
-	}
-	
 	public void setFreq(double hz, float freqA4) {
 		freq = hz;
 		stepsFromFixed = calculateSteps(freqA4);

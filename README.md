@@ -3,13 +3,13 @@ MusicInterpreter project, adapted for Android Studio
 
 Here's how it works:
 
-1. Downlaod and install the APK file https://github.com/S7uXN37/MusicInterpreterStudio/raw/master/app/app-release.apk (Yes, it's required that you turn on "apps from unknown sources" in your settings in order to install this - but by all means turn it off again when it's installed, and yes, this doesn't work for non-Android devices like iPhones - you're SOL)
+1. Download and install the APK file https://github.com/S7uXN37/MusicInterpreterStudio/raw/master/app/app-release.apk (Yes, it's required that you turn on "apps from unknown sources" in your settings in order to install this - but by all means turn it off again when it's installed, and yes, this doesn't work for non-Android devices like iPhones - you're SOL)
 
 2. Open the MusicInterpreter app
 
 3. Select a short MP3, which:
   - has a bitrate of 44100
-  - contains only one melody w/o any chords -> only one note at a time
+  - for best performance, should not contain more than just a melody. However, simple bass tones are supported.
   - should start and end with silence
 
 4. In the next screen, press "Read file" and make sure you're seeing something resembling a waveform - this step might take some time...

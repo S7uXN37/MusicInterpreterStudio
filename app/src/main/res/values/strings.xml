@@ -32,12 +32,4 @@
     <string name="downButton_text">Down</string>
 
     <string name="scroll_block_msg">Complete this screen before moving on!</string>
-
-
-    <string name="filter_app_name">MusicInterpreter: Filters</string>
-
-    <string name="filters_freqPrefix">Frequency: </string>
-    <string name="filters_highPass">High-Pass</string>
-    <string name="filters_lowPass">Low-Pass</string>
-    <string name="filters_undo">Undo</string>
 </resources>

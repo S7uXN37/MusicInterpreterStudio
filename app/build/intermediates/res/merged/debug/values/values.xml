@@ -291,9 +291,9 @@
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="analysis_title">4. Analysis</string>
-    <string name="analyze_cutoffFreqBar_text">Cutoff frequency:</string>
     <string name="analyze_file_button">Analyze!</string>
     <string name="analyze_file_info">Analyze the notes.</string>
+    <string name="analyze_minRelAmpBar_text">Min. rel. amp. of extra notes:</string>
     <string name="app_name">MusicInterpreter</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
     <string name="apply_filters_button">Apply filters</string>

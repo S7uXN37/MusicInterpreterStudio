@@ -12,7 +12,6 @@ class Waveform {
     final MainActivity mMainActivity;
 
     int framesPerPx;
-    float pxPerSampleVal;
     float yOffset;
 
     public Waveform(MainActivity activity, Paint paint) {
@@ -35,7 +34,7 @@ class Waveform {
                     maxVal = s;
             }
 
-            pxPerSampleVal = canvas.getHeight() / (maxVal*2f);
+            float pxPerSampleVal = canvas.getHeight() / (maxVal*2f);
             yOffset = maxVal * pxPerSampleVal;
 
             for (int x = 0; x < canvas.getWidth(); x++) {
