@@ -46,13 +46,6 @@ public class InterpreterFragment extends Fragment {
                     }
                 });
 
-                rootView.findViewById(R.id.filterButton).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        ((MainActivity) getActivity()).openFilterActivity();
-                    }
-                });
-
                 ((WaveformView) rootView.findViewById(R.id.waveform)).setParentActivity(getActivity());
 
                 break;

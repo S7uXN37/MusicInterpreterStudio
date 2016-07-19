@@ -38,8 +38,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/param_threshold"
-        android:max="900"
-        android:progress="400" /> <!-- threshold = progress + 100 -->
+        android:max="1000"
+        android:progress="330" /> <!-- threshold = maxVal * progress / 1000f -->
 
     <TextView
         android:layout_width="wrap_content"

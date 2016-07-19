@@ -80,7 +80,6 @@ public class MainActivity extends FragmentActivity {
     synchronized void readFile() {
         final ProgressBar progressBar = ((ProgressBar) findViewById(R.id.read_file_progress));
         findViewById(R.id.readFileButton).setEnabled(false);
-        findViewById(R.id.filterButton).setEnabled(false);
 
         progressBar.setIndeterminate(true);
 
@@ -132,8 +131,6 @@ public class MainActivity extends FragmentActivity {
 
                     findViewById(R.id.waveform).postInvalidate();
                     progressBar.setProgress(progressBar.getMax());
-
-                    findViewById(R.id.filterButton).setEnabled(true);
 
                     Log.v("Mp3Decoder", "Decoder completed, samples==null = " + (samples == null));
                 }
@@ -235,13 +232,5 @@ public class MainActivity extends FragmentActivity {
 
         AnalysisView.cursorUpdate.removeMessages(AnalysisView.MSG_WHAT);
         AnalysisView.cursorUpdate = null;
-    }
-
-    public void openFilterActivity() {
-        return;
-
-//        Intent openFilterAct = new Intent(this, FilterActivity.class);
-//        openFilterAct.putExtra(EXTRA_SAMPLES, samples);
-//        startActivity(openFilterAct);
     }
 }

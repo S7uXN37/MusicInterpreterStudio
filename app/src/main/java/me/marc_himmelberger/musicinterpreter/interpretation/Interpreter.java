@@ -4,6 +4,9 @@ import android.util.Log;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class Interpreter {
 	// FAIL-SAFE
@@ -28,7 +31,7 @@ public class Interpreter {
 		mData = data;
 	}
 
-	public void analyzeNotes(int noteSensitivity, int noteThreshold) {
+	public void analyzeNotes(int noteSensitivity, float relNoteThreshold) {
         if (mData == null)
             return;
 
@@ -39,7 +42,14 @@ public class Interpreter {
 		ArrayList<Short> localMaxima = resolveList(localMaxInd, mData); // values of local maxima
 		ArrayList<Integer> tmpNoteIndRel = findMaxima(localMaxima, noteSensitivity); // super-local maxima, index relative to localMaxInd
 		ArrayList<Integer> tmpNoteIndAbs = resolveList(tmpNoteIndRel, localMaxInd); // super-local maxima, index absolute
-		
+
+		short globalMax = Short.MIN_VALUE;
+		for (short s : localMaxima) {
+			if (s > globalMax)
+				globalMax = s;
+		}
+		int noteThreshold = (int) (globalMax * relNoteThreshold);
+
 		// filter "notes" with low amplitude -> noise => noteThreshold
 		mNotes.clear();
 		for (int i=0; i < tmpNoteIndAbs.size(); i++) {
@@ -71,6 +81,8 @@ public class Interpreter {
 	public void analyzeFrequencies(int freqWindowSizeLog2, float freqA4, ProgressBar progressBar) {
 		progressBar.setProgress(0);
 
+		ArrayList<Note> newNotes = new ArrayList<>();
+
 		// determine frequency using FFT
 		for (Note n : mNotes) {
 			progressBar.setProgress(progressBar.getProgress() + 1);
@@ -99,8 +111,29 @@ public class Interpreter {
 				}
 			}
 
+			// find other notes, with >50% amplitude and not at indices k*maxInd
+			int scnd_maxInd = -1;
+			double scnd_maxVal = -1;
+			for (int i = 0; i < outMag.length/2; i++) {
+				boolean isOvertone = (i % maxInd == 0);
+
+				if (outMag[i] > scnd_maxVal && outMag[i] > 0.5f * maxVal && !isOvertone) {
+					scnd_maxVal = outMag[i];
+					scnd_maxInd = i;
+				}
+			}
+
 			// sinusoid frequency
 			float hz = framesPerSecond * maxInd / windowSize;
+
+			if (scnd_maxInd != -1) {
+				float scnd_hz = framesPerSecond * scnd_maxInd / windowSize;
+				Note scnd_note = new Note(n.frame);
+				scnd_note.setFreq(scnd_hz, freqA4);
+
+				newNotes.add(scnd_note);
+			}
+
 			Log.i("MusicInterpreter",
 					"Frequency identified: "
 							+ hz + "Hz\n"
@@ -111,6 +144,27 @@ public class Interpreter {
 			);
 
 			n.setFreq(hz, freqA4);
+		}
+
+		SortedSet<Note> sortedNotes = new TreeSet<>(new Comparator<Note>() {
+			@Override
+			public int compare(Note n1, Note n2) {
+				if (n1.frame == n2.frame)
+					return 1;
+				else
+					return Integer.compare(n1.frame, n2.frame);
+			}
+		});
+		for (Note n : newNotes) {
+			sortedNotes.add(n);
+		}
+		for (Note n : mNotes) {
+			sortedNotes.add(n);
+		}
+
+		mNotes.clear();
+		for (Note n : sortedNotes) {
+			mNotes.add(n);
 		}
 
         progressBar.setProgress(progressBar.getMax());

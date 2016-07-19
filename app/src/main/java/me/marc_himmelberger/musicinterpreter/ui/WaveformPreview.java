@@ -43,7 +43,7 @@ public class WaveformPreview extends WaveformView {
         if (isInEditMode() || super.mWaveform.mMainActivity == null || super.mWaveform.mMainActivity.getSamples() == null)
             return;
 
-        float thresholdY = mWaveform.yOffset - getThreshold() * mWaveform.pxPerSampleVal;
+        float thresholdY = mWaveform.yOffset - getRelThreshold() * getHeight() / 2f;
 
         mPaint.setColor(Color.RED);
         canvas.drawLine(0, thresholdY, canvas.getWidth(), thresholdY, mPaint);
@@ -67,12 +67,12 @@ public class WaveformPreview extends WaveformView {
     void update() {
         AsyncTask<Void, Void, Void> updateTask = new AsyncTask<Void, Void, Void>() {
             int sensitivity;
-            int threshold;
+            float relThreshold;
 
             @Override
             protected void onPreExecute() {
                 sensitivity = getSensitivity();
-                threshold = getThreshold();
+                relThreshold = getRelThreshold();
 
                 mIdleBar.setIndeterminate(true);
 
@@ -84,7 +84,7 @@ public class WaveformPreview extends WaveformView {
             @Nullable
             protected Void doInBackground(Void... voids) {
                 mInterpreter.setData(mWaveform.mMainActivity.getSamples());
-                mInterpreter.analyzeNotes(sensitivity, threshold);
+                mInterpreter.analyzeNotes(sensitivity, relThreshold);
 
                 return null;
             }
@@ -124,8 +124,8 @@ public class WaveformPreview extends WaveformView {
     }
 
     @UiThread
-    private int getThreshold() {
-        return mThresholdBar.getProgress() + 100;
+    private float getRelThreshold() {
+        return mThresholdBar.getProgress() / 1000f;
     }
 
     @UiThread
