@@ -68,7 +68,7 @@ public class Interpreter {
 		}
 	}
 
-	public void analyzeFrequencies(int freqWindowSizeLog2, float freqA4, float freqCut, ProgressBar progressBar) {
+	public void analyzeFrequencies(int freqWindowSizeLog2, float freqA4, ProgressBar progressBar) {
 		progressBar.setProgress(0);
 
 		// determine frequency using FFT

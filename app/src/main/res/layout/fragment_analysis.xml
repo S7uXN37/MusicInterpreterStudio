@@ -16,6 +16,7 @@
         android:text="@string/analyze_file_info"
         android:layout_marginBottom="@dimen/fragment_separation_vertical"/>
 
+    <!-- CUTOFF FREQUENCY SeekBar
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -36,7 +37,7 @@
             android:layout_toEndOf="@+id/textView4" />
 
     </RelativeLayout>
-
+    -->
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -188,7 +188,6 @@ public class MainActivity extends FragmentActivity {
     void analyze() {
         AsyncTask<Void, Void, Void> analyzeTask = new AsyncTask<Void, Void, Void>() {
             int windowSizeLog2;
-            float freqCut;
             ProgressBar progressBar;
 
             @Override
@@ -200,10 +199,8 @@ public class MainActivity extends FragmentActivity {
                 progressBar.setIndeterminate(true);
 
                 SeekBar windowSizeBar = (SeekBar) findViewById(R.id.param_windowSize);
-                SeekBar cutoffFreqBar = (SeekBar) findViewById(R.id.analyze_cutoffFreq);
 
                 windowSizeLog2 = windowSizeBar.getProgress() + 9;
-                freqCut = cutoffFreqBar.getProgress();
             }
 
             @Override
@@ -215,7 +212,7 @@ public class MainActivity extends FragmentActivity {
                         progressBar.setIndeterminate(false);
                     }
                 });
-                mInterpreter.analyzeFrequencies(windowSizeLog2, 440f, freqCut, progressBar);
+                mInterpreter.analyzeFrequencies(windowSizeLog2, 440f, progressBar);
                 return null;
             }
 
@@ -245,5 +242,6 @@ public class MainActivity extends FragmentActivity {
 
 //        Intent openFilterAct = new Intent(this, FilterActivity.class);
 //        openFilterAct.putExtra(EXTRA_SAMPLES, samples);
+//        startActivity(openFilterAct);
     }
 }
